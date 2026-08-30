@@ -16,4 +16,6 @@ jobs:
       - run: python experiments/gate0_local_next_state.py
       - run: python experiments/gate1_illegal_predictor.py
       - run: python experiments/gate2_delayed_relevance.py
+      - run: python experiments/gate3_temporal_context_reinstatement.py
+      - run: python experiments/gate4_learn_what_to_remember.py
       - run: python -m unittest discover -s tests -v
