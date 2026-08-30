@@ -1,6 +1,6 @@
 # Child — put prediction inside the running system
 
-**Status: Gates 0–7 built, 2026-08-30.**
+**Status: Gates 0–8 built, 2026-08-30.**
 
 `Child` starts from one intentionally naive question:
 
@@ -22,6 +22,8 @@ state-dependent continuation
 later: active observation + delayed consequence
         +
 represented-time replay over a bounded sparse body
+        +
+independent evidence + post-hoc hypothesis competition
 ```
 
 The point of Gate 0 is to make that seam executable before adding dendrites, neurotransmitters, oscillators, global reward, or another mythology layer.
@@ -412,19 +414,69 @@ territory and a constraint on the idea, not validation of this toy.  The
 instanton note supplies the complementary warning: an apparent moving agent
 can be a collective coordinate of distributed nonlinear dynamics.
 
-## Gate 8 — collective operator
+## Gate 8 — constitutional executable-law competition — BUILT
 
-Use the supplied "instanton" lesson carefully: a low-dimensional apparent
-agent can be a collective coordinate of distributed deterministic dynamics,
-not a privileged executive particle.  Ask whether a population order parameter
-can control a task more robustly than a random projection or hand-designed
-executive.
+Gate 1 showed that a predictor can make its own score look good by changing the
+world it observes.  Gate 5 showed that a successful selector can make itself
+blind to better off-policy evidence.  Gate 8 combines those failures with
+delayed trace, active measurement, hypothesis birth, and explicit
+non-identifiability.
+
+The incumbent knows a seven-variable linear law.  The true world contains one
+initially unavailable signed pair interaction.  If the incumbent controls the
+experiment policy, it selects one-axis inputs on which every interaction is
+zero.  Its observed residual MSE is only `0.09045`, indistinguishable from the
+declared noise variance `0.09`, although its noiseless dense-input RMSE is
+`0.8000`.
+
+A separate coverage channel spends one in four trials on theory-independent
+dense interventions.  This exposes model misspecification in all forty seeds.
+At the birth boundary, 42 signed pair laws become executable competitors.
+
+| policy | truth covered | new probes after birth | peak raw scalars | dense RMSE |
+|---|---:|---:|---:|---:|
+| captured incumbent | 0/40 | 0 | 96 | 0.800 |
+| fixed catalog + coverage | 0/40 | 0 | 96 | 0.800 |
+| birth, no replay, random probes | 40/40 | `8.78` | 96 | 0.000 |
+| birth, no replay, active probes | 40/40 | `5.55` | 96 | 0.000 |
+| shuffled query/outcome address | 2/40 | `0.30` | 224 | 1.075 |
+| **16-record constitutional trace** | **40/40** | **0** | **224** | **0.000** |
+| complete 100-record audit ledger | 40/40 | 0 | 896 | 0.000 |
+| literal 400-record history | 40/40 | 0 | 3,296 | 0.000 |
+
+The address-shuffled arm is the sharp failure: it retains the same marginal
+input and residual values and reaches mean posterior mass `0.9966`, but
+identifies the true law only 5% of
+the time.  Evidence without causal provenance becomes confident nonsense.
+
+In a second world, the legal experiment set makes two pair laws exactly
+equivalent.  The constitutional system returns `NOT_IDENTIFIABLE` with the
+correct two-law set in 40/40 seeds.
+
+This earns a bounded result about separation of roles:
+
+> **Models may propose and compete, but no incumbent may monopolize the
+> evidence, rewrite old audits, or fabricate a winner beyond the distinctions
+> that legal interventions support.  A small causally addressed audit ledger
+> can evaluate a law born after its evidence was collected.**
+
+The quadratic mutation grammar, base law, interaction magnitude, and noise
+model are supplied.  Ordinary full-catalog regression remains prior territory
+and a valid attacker.  See [results/GATE8.md](results/GATE8.md) and the raw
+[JSON receipt](results/gate8_constitutional_scientist.json).
 
 ## Gate 9 — representation drift
 
 Let the child's own internal coordinates become plastic. Test whether persistent
 address, temporal identity, and path memory preserve old function without
 global retraining.
+
+## Later substrate attack — collective operator
+
+The instanton/population-order-parameter experiment is deferred rather than
+discarded.  First make the evidence-control loop survive source corruption and
+representation drift.  Then compare an explicit controller, population-derived
+operator, and random projection behind the same interface and resource budget.
 
 ## Attackers
 
@@ -448,6 +500,7 @@ python experiments/gate4_learn_what_to_remember.py
 python experiments/gate5_policy_blindness_under_drift.py
 python experiments/gate6_active_sensing_delayed_audit.py
 python experiments/gate7_temporal_routing_body.py
+python experiments/gate8_constitutional_scientist.py
 python -m unittest discover -s tests -v
 ```
 
@@ -461,6 +514,8 @@ replacement for the canonical experimental receipts.
 - [KyberDyyni1](https://github.com/anttiluode/KyberDyyni1) — fast computation versus slow consolidation and temporal correspondence.
 - [MovingProblem](https://github.com/anttiluode/MovingProblem) — identity under moving representations and path memory.
 - [AlgoSchalgo](https://github.com/anttiluode/AlgoSchalgo) — observability, ambiguity, and active measurement.
+- [Twensday](https://github.com/anttiluode/Twensday) — experiment choice, missing-hypothesis birth, and evidence-source reliability.
+- [NeuralAlgorithmDecoding](https://github.com/anttiluode/NeuralAlgorithmDecoding) — executable causal laws and explicit non-identifiability.
 - [Tuesday](https://github.com/anttiluode/Tuesday) — temporal structure as a source of identifiability.
 - [GeoNeuronX](https://github.com/anttiluode/GeoNeuronX) — history materialized into receiver state before readout.
 - [TEMPORAL_REPLAY.md](TEMPORAL_REPLAY.md) — represented-time read heads, replay, and the Gate 7 receipt.

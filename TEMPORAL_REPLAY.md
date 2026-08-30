@@ -107,10 +107,16 @@ because one projected dot moves abruptly.
 
 ## What would make this more than a metaphor?
 
-The next collective-operator gate should compare a population-derived phase
-against a hand-designed executive variable and a random projection, with the
-same action interface and perturbation budget.  It should also test actual
-forward/reverse replay and speed switching.  The idea is weakened or killed if:
+The collective-operator comparison is now deferred until after the integrated
+evidence-control gates.  [Gate 8](results/GATE8.md) deliberately permits a
+boring explicit controller and first tests whether competing laws, independent
+coverage, delayed causal address, bounded pre-birth evidence, and honest
+non-identifiability can coexist in one loop.
+
+A later substrate gate should compare a population-derived phase against a
+hand-designed executive variable and a random projection, with the same action
+interface and perturbation budget.  It should also test actual forward/reverse
+replay and speed switching.  The idea is weakened or killed if:
 
 - a direct or dense attacker wins after equalizing the real resource bill;
 - the apparent jump disappears when the full state rather than a centroid is

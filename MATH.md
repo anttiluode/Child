@@ -281,3 +281,96 @@ or observation source should change.
 
 Gate 6 instantiates this with `D=12`, `r_s=0.90`, `k=0.08`, and a swap from
 `r=[0.90,0.55]` to `[0.55,0.90]`.
+
+## 10. Compression for hypotheses that do not exist yet
+
+Let `H_t` be the live hypothesis family and let a memory compressor retain:
+
+```math
+C_{H_t}(D_{1:t}).
+```
+
+It may be a sufficient statistic for comparing every `h in H_t`:
+
+```math
+p(C_{H_t}(D) \mid h)
+```
+
+without preserving the raw dataset `D`.
+
+If a new law `h_new` is admitted later, that guarantee does not carry over:
+
+```math
+h_new notin H_t
+
+C_{H_t}(D) generally not sufficient for
+p(D \mid h_new) / p(D \mid h).
+```
+
+The learner then has three finite choices:
+
+```text
+retain all raw history
+reacquire the distinguishing evidence
+retain a bounded theory-independent audit sample
+```
+
+Gate 8 tests the third choice.
+
+Let the incumbent also influence the experiment distribution:
+
+```math
+x_t \sim pi_h(x).
+```
+
+A misspecified incumbent can choose a support `S_h` on which its missing term
+vanishes:
+
+```math
+f_*(x) = f_h(x)  for every x in S_h,
+```
+
+even though:
+
+```math
+P_mu(f_*(x) != f_h(x)) > 0
+```
+
+under an independent coverage distribution `mu`.
+
+No amount of fitting on `pi_h` identifies the missing term.  A constitutional
+mixture reserves nonzero support outside the incumbent policy:
+
+```math
+pi_const(x)
+  = (1-epsilon) pi_h(x) + epsilon mu(x),
+```
+
+with `epsilon > 0`.
+
+The raw audit ledger preserves tuples such as:
+
+```math
+r_t = (x_t, y_t, source_t, action_t, time_t).
+```
+
+Removing the address and retaining only the multisets `{x_t}` and `{y_t}`
+does not preserve a causal likelihood.  Gate 8's shuffled-address control is
+therefore expected to be confidently wrong rather than merely less efficient.
+
+Finally, legal experiments induce an observational equivalence relation:
+
+```math
+h_i ~ h_j
+iff
+h_i(x) = h_j(x) for every legal x.
+```
+
+The strongest identifiable answer is the quotient class:
+
+```math
+[h] = {h' : h' ~ h}.
+```
+
+Returning one arbitrary member of a multi-law class adds information that the
+experiment did not contain.
