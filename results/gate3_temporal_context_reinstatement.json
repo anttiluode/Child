@@ -1,0 +1,19 @@
+{
+  "gate": 3,
+  "n_episodes": 1000,
+  "cue_dim": 64,
+  "context_dim": 32,
+  "cue_noise": 0.2,
+  "beta": 30.0,
+  "ridge": 1.0,
+  "seeds": 10,
+  "summary": {
+    "cue_only_cosine": {"mean": -0.0016100362499527558, "std": 0.004840322786099741},
+    "episodic_reinstatement_cosine": {"mean": 0.9299267424516753, "std": 0.00591599973071698},
+    "shuffled_temporal_link_cosine": {"mean": 0.002228249615254329, "std": 0.010771503410634025},
+    "random_index_cosine": {"mean": 0.004691316127183579, "std": 0.0061812274445825054},
+    "episodic_top1_identity": {"mean": 0.9218000000000002, "std": 0.0077691698398220195},
+    "correct_index_weight": {"mean": 0.8256317907515868, "std": 0.008121592437794355},
+    "index_weight_vs_reinstatement_corr": {"mean": 0.8414791779001168, "std": 0.014607646637997419}
+  }
+}
