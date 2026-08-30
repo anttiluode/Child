@@ -3,176 +3,124 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Child — local prediction becomes a pulse</title>
+<meta name="description" content="Child is a sequence of executable attacks on local prediction, active observation, and selective memory.">
+<title>Child — six executable attacks on prediction and memory</title>
 <style>
-:root{font-family:Inter,ui-sans-serif,system-ui,sans-serif;background:#0d1016;color:#edf1f7}
-*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(circle at 50% 15%,#192233,#0d1016 48%)}
-main{max-width:1050px;margin:auto;padding:28px 20px 60px}.eyebrow{letter-spacing:.16em;text-transform:uppercase;font-size:12px;opacity:.58}
-h1{font-size:clamp(34px,6vw,68px);line-height:.96;margin:10px 0 18px;max-width:900px}p{line-height:1.55;color:#bcc5d3}
-.grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(280px,.75fr);gap:18px;margin-top:28px}@media(max-width:800px){.grid{grid-template-columns:1fr}}
-.card{background:rgba(17,22,31,.9);border:1px solid #2a3445;border-radius:18px;padding:18px;box-shadow:0 18px 60px rgba(0,0,0,.22)}
-svg{width:100%;height:auto;display:block}.cell{fill:#222b39;stroke:#4b586d;stroke-width:1.2}.trace{fill:#6785b5}.pulse{fill:#f4f7fb;stroke:#fff;stroke-width:2}.pred{fill:none;stroke:#ffbf69;stroke-width:4}
-.controls{display:flex;flex-wrap:wrap;gap:9px;margin:14px 0}button{background:#1c2533;color:#edf1f7;border:1px solid #3a465a;border-radius:11px;padding:9px 12px;cursor:pointer;font-weight:650}button.active{background:#edf1f7;color:#10131a}
-.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}.stat{background:#111722;border:1px solid #293447;border-radius:12px;padding:12px}.stat b{display:block;font-size:24px;margin-top:4px}.small{font-size:12px;color:#8e9caf}
-.flow{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;white-space:pre-wrap;color:#d7dfeb;background:#0b0f15;border:1px solid #263142;border-radius:12px;padding:14px;font-size:13px;line-height:1.5}
-.note{font-size:13px;color:#8e9caf}a{color:#e7ecf5}
+:root{color-scheme:dark;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;--bg:#090c11;--panel:#101722;--line:#273348;--text:#f2f5fa;--muted:#a8b3c4;--faint:#748197;--blue:#7da7e8;--cyan:#69d2cf;--orange:#ffbd6b;--red:#ff7f78;--green:#8bd49c}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;background:radial-gradient(circle at 70% -10%,#1a2941 0,transparent 32%),radial-gradient(circle at 0 30%,#111d2e 0,transparent 28%),var(--bg);color:var(--text)}
+a{color:inherit}.wrap{width:min(1160px,calc(100% - 36px));margin:auto}.topbar{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px 0}.brand{font-weight:850;letter-spacing:.02em;text-decoration:none}.toplinks{display:flex;gap:18px;color:var(--muted);font-size:14px}.toplinks a{text-underline-offset:4px}
+.hero{padding:68px 0 54px}.eyebrow{letter-spacing:.16em;text-transform:uppercase;font-size:12px;color:var(--blue);font-weight:800}.hero h1{font-size:clamp(43px,7.2vw,88px);line-height:.94;letter-spacing:-.045em;max-width:1000px;margin:14px 0 24px}.hero .lead{font-size:clamp(18px,2.3vw,24px);line-height:1.5;max-width:880px;color:#c8d1df}.verdict{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:38px}.verdict article{border:1px solid var(--line);border-radius:18px;padding:22px;background:rgba(16,23,34,.78)}.verdict h2{font-size:14px;text-transform:uppercase;letter-spacing:.12em;margin:0 0 10px}.verdict p{margin:0;color:var(--muted);line-height:1.6}.survived h2{color:var(--green)}.removed h2{color:var(--red)}
+.section{padding:68px 0}.section-head{display:grid;grid-template-columns:.62fr 1.38fr;gap:28px;align-items:start;margin-bottom:28px}.section h2{font-size:clamp(30px,5vw,54px);line-height:1;margin:8px 0 0;letter-spacing:-.035em}.section-head>p{font-size:18px;line-height:1.6;color:var(--muted);margin:0}.card{background:linear-gradient(145deg,rgba(17,24,36,.96),rgba(11,17,26,.94));border:1px solid var(--line);border-radius:20px;padding:20px;box-shadow:0 20px 70px rgba(0,0,0,.18)}
+.gate-map{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.gate{position:relative;min-height:230px}.gate .number{font:800 13px ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--blue)}.gate h3{font-size:22px;margin:36px 0 10px}.gate p{color:var(--muted);line-height:1.5;margin:0}.gate .attack{display:block;border-top:1px solid var(--line);margin-top:18px;padding-top:13px;color:#d8dfeb;font-size:13px;line-height:1.5}.gate.current{border-color:#476488;box-shadow:inset 0 0 0 1px rgba(125,167,232,.14)}.gate.current:after{content:"CURRENT EDGE";position:absolute;right:15px;top:14px;color:var(--cyan);font-size:10px;letter-spacing:.12em;font-weight:850}
+.gate5-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(310px,.75fr);gap:16px}.switches{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}button{font:inherit;background:#182231;color:var(--text);border:1px solid #34435a;border-radius:10px;padding:9px 12px;cursor:pointer;font-weight:750}button:hover{border-color:#6f83a2}button.active{background:var(--text);border-color:var(--text);color:#0b1017}.policy-buttons button.active{background:#1d3850;color:#eef7ff;border-color:#6090ba}.prob-head,.prob-row{display:grid;grid-template-columns:94px 1fr 1fr 100px;gap:10px;align-items:center}.prob-head{color:var(--faint);font-size:11px;text-transform:uppercase;letter-spacing:.08em;padding-bottom:8px}.prob-row{padding:8px 0;border-top:1px solid rgba(39,51,72,.7)}.group-name{font:750 13px ui-monospace,SFMono-Regular,Menlo,monospace}.meter{height:10px;background:#1c2634;border-radius:99px;overflow:hidden}.meter i{display:block;height:100%;border-radius:99px;background:#60718a}.meter.new i{background:var(--orange)}.visibility{font-size:11px;text-align:right;color:var(--muted)}.visibility.blind{color:var(--red)}.visibility.seen{color:var(--green)}
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:18px 0}.metric{padding:13px;background:#0b1119;border:1px solid #263247;border-radius:12px}.metric span{font-size:11px;color:var(--faint);display:block}.metric b{font-size:24px;display:block;margin-top:5px}.barline{height:5px;background:#1b2533;margin-top:8px;border-radius:9px;overflow:hidden}.barline i{display:block;height:100%;background:var(--cyan)}.policy-copy{color:var(--muted);line-height:1.55;min-height:72px}.cost{display:grid;grid-template-columns:1fr 1fr;gap:9px}.cost div{font-size:12px;color:var(--muted);background:#0b1119;border:1px solid #263247;border-radius:10px;padding:11px}.cost b{color:var(--text);display:block;font-size:17px;margin-top:3px}.ident{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;background:#080d13;border:1px solid #253146;border-radius:14px;padding:18px;color:#dbe5f2;line-height:1.65;white-space:pre-wrap}.earned{border-left:3px solid var(--cyan);padding:2px 0 2px 17px;color:#dbe6f3;line-height:1.65;margin-top:18px}
+.lab-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(300px,.75fr);gap:16px}.ring-card svg{width:100%;height:auto;display:block;max-height:560px}.cell{fill:#222c3a;stroke:#4d5a70;stroke-width:1.2}.trace{fill:#6d90c4}.pulse{fill:#f4f7fb;stroke:#fff;stroke-width:2}.pred{fill:none;stroke:var(--orange);stroke-width:4}.controls{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.note{font-size:13px;color:var(--faint);line-height:1.55}.stats{display:grid;grid-template-columns:1fr 1fr;gap:9px}.stat{background:#0b1119;border:1px solid #263247;border-radius:12px;padding:12px}.stat span{font-size:11px;color:var(--faint);display:block}.stat b{display:block;font-size:23px;margin-top:4px}.hit.yes{color:var(--green)}.hit.no{color:var(--red)}.flow{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;white-space:pre-wrap;color:#dbe5f2;background:#080d13;border:1px solid #253146;border-radius:13px;padding:15px;font-size:13px;line-height:1.55}.lab-copy h3{margin:23px 0 10px}.receipt{display:grid;grid-template-columns:1fr auto;gap:0;margin-top:14px;border:1px solid var(--line);border-radius:14px;overflow:hidden}.receipt div,.receipt b{padding:11px 14px;border-bottom:1px solid var(--line)}.receipt div{color:var(--muted)}.receipt b{text-align:right}.receipt div:nth-last-child(-n+2),.receipt b:last-child{border-bottom:0}
+.corrections{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.correction h3{margin:0 0 8px;font-size:18px}.correction p{color:var(--muted);line-height:1.55;margin:0}.correction strong{color:var(--text)}.next{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}.next ol{margin:0;padding-left:22px;color:var(--muted);line-height:1.75}.next strong{color:var(--text)}footer{padding:40px 0 70px;color:var(--faint);font-size:13px;border-top:1px solid var(--line)}footer .wrap{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
+@media(max-width:900px){.gate-map{grid-template-columns:repeat(2,1fr)}.gate5-grid,.lab-grid{grid-template-columns:1fr}.section-head{grid-template-columns:1fr}.section-head>p{max-width:760px}.hero{padding-top:42px}}
+@media(max-width:620px){.wrap{width:min(100% - 24px,1160px)}.toplinks a:first-child{display:none}.verdict,.gate-map,.corrections,.next{grid-template-columns:1fr}.gate{min-height:auto}.prob-head,.prob-row{grid-template-columns:72px 1fr 1fr 70px}.metrics{grid-template-columns:1fr}.metric{display:grid;grid-template-columns:1fr auto;align-items:center}.metric b{margin:0}.metric .barline{grid-column:1/-1}.hero h1{font-size:44px}.section{padding:52px 0}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
-<main>
-<div class="eyebrow">Child / Gate 0 illustration</div>
-<h1>What if prediction lives inside the pulse?</h1>
-<p>A pulse moves around a ring. The present position does not reveal whether it is travelling clockwise or counter-clockwise. Each cell owns a tiny local next-state predictor. A persistent receiver trace supplies the missing history. Feed prediction back into the network and the predictor becomes a running dynamical system.</p>
-
-<div class="grid">
-<section class="card">
-<svg id="ring" viewBox="0 0 620 620"></svg>
-<div class="controls">
-<button id="run" class="active">Pause</button>
-<button id="stateful" class="active">Persistent trace</button>
-<button id="current">Current only</button>
-<button id="auto">Autonomous closure</button>
-<button id="restart">New world</button>
-</div>
-<p class="note">White = current pulse. Blue haze = receiver trace. Orange ring = predicted next cell. The browser trains two tiny models locally at startup; the Python experiment is the canonical receipt.</p>
+<header class="wrap topbar"><a class="brand" href="#top">CHILD</a><nav class="toplinks" aria-label="Primary"><a href="#gates">Gates 0–5</a><a href="#gate5">Latest result</a><a href="#gate0">Pulse lab</a><a href="https://github.com/anttiluode/Child">GitHub ↗</a></nav></header>
+<main id="top">
+<section class="wrap hero">
+  <div class="eyebrow">Six executable attacks · updated 30 August 2026</div>
+  <h1>Prediction is not the conclusion.</h1>
+  <p class="lead">The useful thread survived, but the grand reading did not. History can disambiguate a local present. Closing a predictor into a loop creates dynamics. Neither fact gives us agency, intelligence, or a new learning principle. The harder question is now: <strong>what evidence is allowed to reach learning?</strong></p>
+  <div class="verdict"><article class="survived"><h2>What survived</h2><p>Persistent, addressable state changes what a local signal can mean. A temporary trace can keep delayed evidence reachable. Imperfect selection can preserve the ability to discover that a learned policy is wrong.</p></article><article class="removed"><h2>What did not</h2><p>Prediction loss is not motivation. A closed rollout is not autonomy. “Local” does not solve biological credit assignment. A learned memory gate is not reliable when it hides the outcomes needed to correct itself.</p></article></div>
 </section>
 
-<aside class="card">
-<div class="stats">
-<div class="stat"><span class="small">mode</span><b id="mode">STATE</b></div>
-<div class="stat"><span class="small">rolling accuracy</span><b id="acc">—</b></div>
-<div class="stat"><span class="small">step</span><b id="step">0</b></div>
-<div class="stat"><span class="small">predicted</span><b id="guess">—</b></div>
-</div>
-<h3>Local rule</h3>
-<div class="flow">current local activity
+<section class="section" id="gates"><div class="wrap">
+  <div class="section-head"><div><div class="eyebrow">The argument so far</div><h2>Each gate attacks the previous claim.</h2></div><p>The project is not a ladder of confirmations. Every gate adds the boring attacker, hidden assumption, or resource bill that the preceding result made easy to ignore.</p></div>
+  <div class="gate-map">
+    <article class="card gate"><span class="number">GATE 0</span><h3>The present needs history</h3><p>A receiver-carried trace resolves clockwise versus counter-clockwise motion when the current pulse alone cannot.</p><span class="attack"><strong>Attack:</strong> an explicit previous-position Markov rule performs just as well.</span></article>
+    <article class="card gate"><span class="number">GATE 1</span><h3>Prediction changes its data</h3><p>A prediction-only output gate suppresses roughly 95% of possible motion and makes its future easy to predict.</p><span class="attack"><strong>Correction:</strong> low loss can mean a frozen world, not a better model.</span></article>
+    <article class="card gate"><span class="number">GATE 2</span><h3>Relevance arrives late</h3><p>A bounded fast trace preserves detail until the system learns what matters, then projects only that fragment into slow state.</p><span class="attack"><strong>Bill:</strong> the trace buys time with temporary storage.</span></article>
+    <article class="card gate"><span class="number">GATE 3</span><h3>Context can be reinstated</h3><p>A noisy cue retrieves the temporal context of its earlier encounter with ordinary key-value episodic attention.</p><span class="attack"><strong>Territory:</strong> this is content-addressed memory, not a novel hippocampal mechanism.</span></article>
+    <article class="card gate"><span class="number">GATE 4</span><h3>Learn what to retain</h3><p>A learned filter spends scarce slow memory better than fixed novelty or recency rules when future relevance is predictable.</p><span class="attack"><strong>Hidden gift:</strong> training received outcomes for retained and discarded events.</span></article>
+    <article class="card gate current"><span class="number">GATE 5</span><h3>Selection hides correction</h3><p>With feedback only for retained events, a successful filter can become a self-sealing observation mask under drift.</p><span class="attack"><strong>Requirement:</strong> exploration, side information, or a trace must restore observation support.</span></article>
+  </div>
+</div></section>
+
+<section class="section" id="gate5"><div class="wrap">
+  <div class="section-head"><div><div class="eyebrow">Gate 5 · interactive receipt</div><h2>The blind spot is causal.</h2></div><p>Twenty slow-memory slots select from 100 events. The learner initially chooses group 0. Then group 1 becomes best. Use the controls to compare what each policy can observe and how it recovers.</p></div>
+  <div class="gate5-grid">
+    <section class="card"><div class="switches scenario-buttons" aria-label="Drift scenario"><button class="active" data-scenario="visible">Selected group also worsens</button><button data-scenario="hidden">Only ignored group improves</button></div><div class="prob-head"><span>event group</span><span>old relevance</span><span>new relevance</span><span>learner sees</span></div><div id="probabilities"></div><p class="earned" id="identText"></p></section>
+    <aside class="card"><div class="switches policy-buttons" aria-label="Memory policy"><button class="active" data-policy="greedy">Greedy</button><button data-policy="reserve">4-slot reserve</button><button data-policy="burst">Surprise burst</button><button data-policy="trace">Fast trace</button></div><div class="metrics"><div class="metric"><span>pre-shift recall</span><b id="mPre"></b><div class="barline"><i id="bPre"></i></div></div><div class="metric"><span>first 25 blocks</span><b id="mEarly"></b><div class="barline"><i id="bEarly"></i></div></div><div class="metric"><span>last 80 blocks</span><b id="mLate"></b><div class="barline"><i id="bLate"></i></div></div></div><p class="policy-copy" id="policyCopy"></p><div class="cost"><div>systematic recovery<b id="recovery"></b></div><div>resource cost<b id="resource"></b></div></div></aside>
+  </div>
+  <div class="card" style="margin-top:16px"><div class="ident">selected evidence is identical in old and hidden-new worlds
+        ↓
+no parameter update can identify the off-policy improvement
+        ↓
+observation support must come from somewhere else</div><p class="earned"><strong>Earned:</strong> continuous learning is insufficient when a policy receives no identifying feedback from the region it has learned not to retain. This is a transparent selective-label / contextual-bandit problem, not a new theorem.</p></div>
+</div></section>
+
+<section class="section" id="gate0"><div class="wrap">
+  <div class="section-head"><div><div class="eyebrow">Gate 0 · live illustration</div><h2>What the pulse actually shows.</h2></div><p>The ring remains useful as the smallest executable bridge from one-step prediction to recurrent dynamics. Its role is now narrower and explicit: an illustration of state-dependent continuation, not the conclusion of the project.</p></div>
+  <div class="lab-grid">
+    <section class="card ring-card"><svg id="ring" viewBox="0 0 620 620" role="img" aria-label="A pulse and receiver trace moving around a ring of 24 cells"></svg><div class="controls"><button id="run" class="active">Pause</button><button id="stateful" class="active">Persistent trace</button><button id="current">Current only</button><button id="auto">Close the rollout</button><button id="restart">Restart demo</button></div><p class="note">White is the current pulse; blue is receiver trace; orange is the predicted next cell. “This step” may look good during a long one-direction streak. The frozen benchmark at right is the balanced multi-stream receipt. They are deliberately not conflated.</p></section>
+    <aside class="card lab-copy"><div class="stats"><div class="stat"><span>mode</span><b id="mode">TRACE</b></div><div class="stat"><span>this step</span><b id="hit" class="hit">—</b></div><div class="stat"><span>world step</span><b id="step">0</b></div><div class="stat"><span>frozen benchmark</span><b id="benchmark">98.75%</b></div></div><h3>Local rule</h3><div class="flow">current local activity
 + receiver-carried trace
         ↓
 cell-specific next-state score
         ↓
 local one-step error
         ↓
-persistent local weights</div>
-<h3>The bridge</h3>
-<div class="flow">predict x(t+1)
-        ↓
-feed prediction back
-        ↓
-x(t+1) becomes the new present
-        ↓
-predict again
-        ↓
-repeated prediction = dynamics</div>
-<p class="note">The explicit previous-position Markov rule is the stronger boring explanation for this toy. Gate 0 tests persistent local state/addressability, not novelty.</p>
-</aside>
-</div>
+persistent local weights</div><h3>Closure, without mythology</h3><div class="flow">predict x(t+1)
+        ↓ feed prediction back
+x(t+1) becomes the next input
+        ↓ repeat
+closed-loop rollout</div><p class="note">A travelling wave maintained by its own prediction is a recurrent generator. It is not an agent, a desire, an independent world model, or open-ended autonomy.</p></aside>
+  </div>
+  <div class="card" style="margin-top:16px"><h3 style="margin-top:0">Canonical Gate 0 · frozen evaluation, eight streams</h3><div class="receipt"><div>Current activity only</div><b>0.4942 ± 0.0647</b><div>Trace addresses scrambled</div><b>0.4927 ± 0.0640</b><div>Persistent local receiver trace</div><b>0.9875 ± 0.0013</b><div>Explicit previous-position attacker</div><b>0.9877 ± 0.0013</b></div><p class="earned"><strong>Earned:</strong> persistent addressable history disambiguates an otherwise ambiguous present. The explicit Markov state is the stronger, boring explanation. The browser illustration neither disproves nor replaces that controlled Python receipt.</p></div>
+</div></section>
 
-<section class="card" style="margin-top:18px">
-<h2>Canonical Gate 0</h2>
-<p><b>Current only:</b> 0.4942 · <b>scrambled trace:</b> 0.4927 · <b>persistent trace:</b> 0.9875 · <b>explicit Markov attacker:</b> 0.9877 · <b>autonomous rollout:</b> 1.0000.</p>
-<p>The next attack is nastier: if prediction can alter its own future observations, does it learn the world—or make the world boring enough that prediction becomes easy?</p>
-<p><a href="https://github.com/anttiluode/Child">Repository</a></p>
-</section>
+<section class="section" id="corrections"><div class="wrap">
+  <div class="section-head"><div><div class="eyebrow">Misconceptions removed</div><h2>A smaller claim is a stronger one.</h2></div><p>The project becomes more interesting when the metaphors stop doing unpaid work.</p></div>
+  <div class="corrections">
+    <article class="card correction"><h3>“Prediction lives inside the pulse.”</h3><p><strong>Metaphor only.</strong> The pulse is the current state. Each addressed cell carries parameters and a decaying trace used to predict its next local activation.</p></article>
+    <article class="card correction"><h3>“Local error is biologically local.”</h3><p><strong>Not established.</strong> The next activation is supplied as a teaching target. No backpropagation through time is used, but general biological credit assignment remains unsolved.</p></article>
+    <article class="card correction"><h3>“Prediction creates purpose.”</h3><p><strong>Gate 1 rejects this.</strong> A controller rewarded only for predictability learns to suppress motion. Viability, exploration, and consequence must enter explicitly.</p></article>
+    <article class="card correction"><h3>“A learned filter keeps learning.”</h3><p><strong>Only from reachable evidence.</strong> Gate 4 worked under full feedback. Gate 5 shows that selected-only feedback can make its compression policy self-confirming.</p></article>
+    <article class="card correction"><h3>“Surprise reveals hidden change.”</h3><p><strong>Only on observed support.</strong> Surprise can report that the selected region worsened. It cannot reveal that an unobserved region improved while selected outcomes stayed identical.</p></article>
+    <article class="card correction"><h3>“Fast trace is free memory.”</h3><p><strong>It has a receipt.</strong> In Gate 5, near-immediate recovery uses 80 temporary trace slots beyond the 20 persistent slots. Time is bought with capacity.</p></article>
+  </div>
+</div></section>
+
+<section class="section"><div class="wrap">
+  <div class="section-head"><div><div class="eyebrow">Next attack</div><h2>Split learning, sensing, and acting.</h2></div><p>The next toy should force the system to decide when to update, when to obtain another observation, and when to act—while charging each operation and preventing the predictor from grading consequences it can hide.</p></div>
+  <div class="next"><div class="card"><div class="ident">ambiguous observation
+  ├─ LEARN → change the model
+  ├─ SENSE → pay for another view
+  └─ ACT   → change the world
+
+delayed external consequence
+  └─ audits the decision</div></div><div class="card"><ol><li><strong>Separate losses:</strong> prediction, viability, and observation cost.</li><li><strong>Matched attackers:</strong> fixed sensing, oracle sensing, and a controller that can exploit the simulator.</li><li><strong>Off-policy audit:</strong> retain enough information to score outcomes the policy did not choose to expose.</li><li><strong>Resource receipt:</strong> count persistent state, temporary trace, extra observations, and interventions.</li></ol></div></div>
+</div></section>
 </main>
+<footer><div class="wrap"><span>Child · executable speculation under attack</span><span><a href="results/GATE5.md">Gate 5 receipt</a> · <a href="MATH.md">math</a> · <a href="PAPERS.md">papers</a> · <a href="https://github.com/anttiluode/Child">source</a></span></div></footer>
+<noscript><p class="wrap">The written receipts remain available without JavaScript; the two illustrations require it.</p></noscript>
 
 <script>
-const N=24,R=2,A=.40,ETA=.03;
-const svg=document.getElementById("ring"),cells=[];
-for(let i=0;i<N;i++){
-  const a=-Math.PI/2+i*2*Math.PI/N,cx=310+235*Math.cos(a),cy=310+235*Math.sin(a);
-  const t=document.createElementNS("http://www.w3.org/2000/svg","circle");
-  t.setAttribute("cx",cx);t.setAttribute("cy",cy);t.setAttribute("r",24);t.setAttribute("class","trace");t.style.opacity=".05";svg.appendChild(t);
-  const c=document.createElementNS("http://www.w3.org/2000/svg","circle");
-  c.setAttribute("cx",cx);c.setAttribute("cy",cy);c.setAttribute("r",14);c.setAttribute("class","cell");svg.appendChild(c);
-  const p=document.createElementNS("http://www.w3.org/2000/svg","circle");
-  p.setAttribute("cx",cx);p.setAttribute("cy",cy);p.setAttribute("r",19);p.setAttribute("class","pred");p.style.display="none";svg.appendChild(p);
-  cells.push({t:t,c:c,p:p});
-}
-function rand(){return (Math.random()*2-1)*.001}
-function onehot(p){const x=Array(N).fill(0);x[(p+N)%N]=1;return x}
-function argmax(a){let m=-Infinity,k=0;for(let i=0;i<a.length;i++){if(a[i]>m){m=a[i];k=i}}return k}
-class Model{
-  constructor(useTrace){
-    this.useTrace=useTrace;this.q=Array(N).fill(0);
-    const f=(2*R+1)*(useTrace?2:1)+1;
-    this.w=Array.from({length:N},()=>Array.from({length:f},rand));
-  }
-  feat(j,x){
-    const f=[];
-    for(let o=-R;o<=R;o++)f.push(x[(j+o+N)%N]);
-    if(this.useTrace)for(let o=-R;o<=R;o++)f.push(this.q[(j+o+N)%N]);
-    f.push(1);return f;
-  }
-  pred(x){
-    return this.w.map((w,j)=>{
-      const f=this.feat(j,x);let s=0;
-      for(let k=0;k<w.length;k++)s+=w[k]*f[k];
-      return s;
-    });
-  }
-  state(x){for(let i=0;i<N;i++)this.q[i]=A*this.q[i]+(1-A)*x[i]}
-  learn(x,y){
-    const pp=this.pred(x);
-    for(let j=0;j<N;j++){
-      const f=this.feat(j,x),e=y[j]-pp[j];
-      for(let k=0;k<f.length;k++)this.w[j][k]+=ETA*e*f[k];
-    }
-    this.state(x);
-  }
-}
-function train(m,steps){
-  let p=Math.floor(Math.random()*N),d=Math.random()<.5?-1:1,x=onehot(p);
-  for(let t=0;t<steps;t++){
-    p=(p+d+N)%N;const y=onehot(p);m.learn(x,y);x=y;
-    if(Math.random()<1/80)d*=-1;
-  }
-}
-let stateModel,currentModel;
-function rebuild(){
-  stateModel=new Model(true);currentModel=new Model(false);
-  train(stateModel,5500);train(currentModel,5500);
-}
-rebuild();
+const gate5={visible:{probs:[.45,.90,.10,.08,.06],ident:"The selected group gets worse, so selected feedback can trigger a search. A surprise burst eventually recovers—but slower than a continuous reserve or full fast trace.",policies:{greedy:{v:[.6831,.2789,.2805],r:"0 / 40 seeds",c:"20 slow · no reserve",seen:[1,0,0,0,0],copy:"Online updates do not help: the policy keeps sampling its familiar, still-moderately-useful group and never obtains evidence that group 1 is now best."},reserve:{v:[.5671,.3832,.4815],r:"40 / 40 · 19.3 blocks",c:"4 writes every block",seen:[1,1,1,1,1],copy:"Four permanent exploration slots preserve observation support everywhere. Recovery is reliable, paid for by a 20% opportunity cost before the shift."},burst:{v:[.6821,.3037,.5702],r:"40 / 40 · 31.2 blocks",c:"0.615 explore / block",seen:[1,1,1,1,1],copy:"Deterioration on selected events triggers a temporary 12-slot exploration burst. It preserves pre-shift recall and reaches oracle late recall, but recovery is slower."},trace:{v:[.6831,.5564,.5702],r:"40 / 40 · 8.0 blocks",c:"+80 temporary slots",seen:[1,1,1,1,1],copy:"A one-block trace carries all discarded identities until outcomes arrive. It recovers almost immediately, while paying the largest temporary storage bill."}}},hidden:{probs:[.75,.90,.10,.08,.06],ident:"The selected group is statistically unchanged. Old and shifted worlds therefore produce the same selected feedback. No surprise signal can systematically reveal the improvement outside the policy's support.",policies:{greedy:{v:[.6831,.3970,.3961],r:"0 / 40 seeds",c:"20 slow · no reserve",seen:[1,0,0,0,0],copy:"Continuous selected-feedback learning is observationally trapped. Nothing it sees distinguishes the old world from the shifted one."},reserve:{v:[.5671,.3550,.4095],r:"40 / 40 · 34.3 blocks",c:"4 writes every block",seen:[1,1,1,1,1],copy:"Persistent random reserve eventually samples the improved group and recovers in every seed, with slower discovery because the selected group never signals trouble."},burst:{v:[.6821,.3953,.3983],r:"1 / 40 · false alarm",c:"0.030 explore / block",seen:[1,0,0,0,0],copy:"The selected region supplies no trigger. The single recovery was a false-alarm burst, not detection of the hidden change."},trace:{v:[.6831,.4674,.4758],r:"40 / 40 · 8.5 blocks",c:"+80 temporary slots",seen:[1,1,1,1,1],copy:"The temporary full-feedback trace keeps discarded events auditable. It approaches the 20-slot oracle's 0.4782 late recall."}}}};
+const oldProb=[.75,.12,.10,.08,.06];let scenario="visible",policy="greedy";function pct(v){return(100*v).toFixed(1)+"%"}
+function drawGate5(){const s=gate5[scenario],p=s.policies[policy],rows=document.getElementById("probabilities");rows.innerHTML="";for(let i=0;i<5;i++){const row=document.createElement("div");row.className="prob-row";row.innerHTML='<span class="group-name">group '+i+'</span><span class="meter" title="'+pct(oldProb[i])+'"><i style="width:'+pct(oldProb[i])+'"></i></span><span class="meter new" title="'+pct(s.probs[i])+'"><i style="width:'+pct(s.probs[i])+'"></i></span><span class="visibility '+(p.seen[i]?"seen":"blind")+'">'+(p.seen[i]?"feedback":"no evidence")+'</span>';rows.appendChild(row)}document.getElementById("identText").textContent=s.ident;document.getElementById("policyCopy").textContent=p.copy;["Pre","Early","Late"].forEach((name,i)=>{document.getElementById("m"+name).textContent=pct(p.v[i]);document.getElementById("b"+name).style.width=pct(p.v[i])});document.getElementById("recovery").textContent=p.r;document.getElementById("resource").textContent=p.c}
+document.querySelectorAll("[data-scenario]").forEach(b=>b.onclick=()=>{scenario=b.dataset.scenario;document.querySelectorAll("[data-scenario]").forEach(x=>x.classList.toggle("active",x===b));drawGate5()});document.querySelectorAll("[data-policy]").forEach(b=>b.onclick=()=>{policy=b.dataset.policy;document.querySelectorAll("[data-policy]").forEach(x=>x.classList.toggle("active",x===b));drawGate5()});drawGate5();
 
-let mode="state",running=true,autonomous=false,worldStep=0,pos=3,dir=1,x=onehot(pos),history=[];
-stateModel.q=Array(N).fill(0);currentModel.q=Array(N).fill(0);
-stateModel.state(onehot(pos-dir));currentModel.state(onehot(pos-dir));
-
-function active(){return mode==="state"?stateModel:currentModel}
-function resetWorld(){
-  pos=Math.floor(Math.random()*N);dir=Math.random()<.5?-1:1;x=onehot(pos);worldStep=0;history=[];autonomous=false;
-  document.getElementById("auto").classList.remove("active");
-  stateModel.q=Array(N).fill(0);currentModel.q=Array(N).fill(0);
-  stateModel.state(onehot(pos-dir));currentModel.state(onehot(pos-dir));
-}
-function render(guess){
-  for(let i=0;i<N;i++){
-    cells[i].c.setAttribute("class",x[i]?"pulse":"cell");
-    cells[i].t.style.opacity=String(.04+.62*Math.min(1,stateModel.q[i]*2.4));
-    cells[i].p.style.display=i===guess?"block":"none";
-  }
-  document.getElementById("step").textContent=worldStep;
-  document.getElementById("guess").textContent=guess;
-  document.getElementById("mode").textContent=autonomous?"AUTO":(mode==="state"?"STATE":"NOW");
-  document.getElementById("acc").textContent=history.length?(100*history.reduce((a,b)=>a+b,0)/history.length).toFixed(1)+"%":"—";
-}
-function tick(){
-  if(!running)return;
-  const model=active(),guess=argmax(model.pred(x));let next;
-  if(autonomous){next=onehot(guess);history=[]}
-  else{
-    const nextPos=(pos+dir+N)%N;next=onehot(nextPos);
-    history.push(guess===nextPos?1:0);if(history.length>120)history.shift();
-    pos=nextPos;if(Math.random()<1/80)dir*=-1;
-  }
-  stateModel.state(x);currentModel.state(x);x=next;worldStep++;render(guess);
-}
-setInterval(tick,95);render(argmax(active().pred(x)));
-
+const N=24,R=2,A=.40,ETA=.03,svg=document.getElementById("ring"),cells=[];
+for(let i=0;i<N;i++){const a=-Math.PI/2+i*2*Math.PI/N,cx=310+235*Math.cos(a),cy=310+235*Math.sin(a);const t=document.createElementNS("http://www.w3.org/2000/svg","circle");t.setAttribute("cx",cx);t.setAttribute("cy",cy);t.setAttribute("r",24);t.setAttribute("class","trace");t.style.opacity=".05";svg.appendChild(t);const c=document.createElementNS("http://www.w3.org/2000/svg","circle");c.setAttribute("cx",cx);c.setAttribute("cy",cy);c.setAttribute("r",14);c.setAttribute("class","cell");svg.appendChild(c);const q=document.createElementNS("http://www.w3.org/2000/svg","circle");q.setAttribute("cx",cx);q.setAttribute("cy",cy);q.setAttribute("r",19);q.setAttribute("class","pred");q.style.display="none";svg.appendChild(q);cells.push({t:t,c:c,p:q})}
+let seed=1949;function random(){seed=(1664525*seed+1013904223)>>>0;return seed/4294967296}function randWeight(){return(random()*2-1)*.001}function onehot(p){const x=Array(N).fill(0);x[(p+N)%N]=1;return x}function argmax(a){let m=-Infinity,k=0;for(let i=0;i<a.length;i++)if(a[i]>m){m=a[i];k=i}return k}
+class Model{constructor(useTrace){this.useTrace=useTrace;this.q=Array(N).fill(0);const f=(2*R+1)*(useTrace?2:1)+1;this.w=Array.from({length:N},()=>Array.from({length:f},randWeight))}feat(j,x){const f=[];for(let o=-R;o<=R;o++)f.push(x[(j+o+N)%N]);if(this.useTrace)for(let o=-R;o<=R;o++)f.push(this.q[(j+o+N)%N]);f.push(1);return f}pred(x){return this.w.map((w,j)=>{const f=this.feat(j,x);let s=0;for(let k=0;k<w.length;k++)s+=w[k]*f[k];return s})}state(x){for(let i=0;i<N;i++)this.q[i]=A*this.q[i]+(1-A)*x[i]}learn(x,y){const pp=this.pred(x);for(let j=0;j<N;j++){const f=this.feat(j,x),e=y[j]-pp[j];for(let k=0;k<f.length;k++)this.w[j][k]+=ETA*e*f[k]}this.state(x)}}
+let stateModel,currentModel;function rebuild(){seed=1949;stateModel=new Model(true);currentModel=new Model(false);let p=7,d=1,x=onehot(p);for(let t=0;t<12000;t++){p=(p+d+N)%N;const y=onehot(p);stateModel.learn(x,y);currentModel.learn(x,y);x=y;if(random()<1/80)d*=-1}}rebuild();
+let mode="state",running=true,closed=false,worldStep=0,pos=3,dir=1,x=onehot(pos),lastHit=null;stateModel.q=Array(N).fill(0);currentModel.q=Array(N).fill(0);stateModel.state(onehot(pos-dir));currentModel.state(onehot(pos-dir));function active(){return mode==="state"?stateModel:currentModel}
+function resetWorld(){pos=3;dir=random()<.5?-1:1;x=onehot(pos);worldStep=0;lastHit=null;closed=false;document.getElementById("auto").classList.remove("active");stateModel.q=Array(N).fill(0);currentModel.q=Array(N).fill(0);stateModel.state(onehot(pos-dir));currentModel.state(onehot(pos-dir));render(argmax(active().pred(x)))}
+function render(guess){for(let i=0;i<N;i++){cells[i].c.setAttribute("class",x[i]?"pulse":"cell");cells[i].t.style.opacity=String(.04+.62*Math.min(1,stateModel.q[i]*2.4));cells[i].p.style.display=i===guess?"block":"none"}document.getElementById("step").textContent=worldStep;document.getElementById("mode").textContent=closed?"CLOSED":(mode==="state"?"TRACE":"NOW");const h=document.getElementById("hit");h.textContent=closed?"not scored":(lastHit===null?"—":lastHit?"hit":"miss");h.className="hit "+(lastHit===null?"":lastHit?"yes":"no");document.getElementById("benchmark").textContent=mode==="state"?"98.75%":"49.42%"}
+function tick(){if(!running)return;const guess=argmax(active().pred(x));let next;if(closed){next=onehot(guess);lastHit=null}else{const nextPos=(pos+dir+N)%N;next=onehot(nextPos);lastHit=guess===nextPos;pos=nextPos;if(random()<1/80)dir*=-1}stateModel.state(x);currentModel.state(x);x=next;worldStep++;render(guess)}setInterval(tick,105);render(argmax(active().pred(x)));
 document.getElementById("run").onclick=e=>{running=!running;e.target.textContent=running?"Pause":"Run";e.target.classList.toggle("active",running)};
-document.getElementById("stateful").onclick=()=>{mode="state";history=[];document.getElementById("stateful").classList.add("active");document.getElementById("current").classList.remove("active")};
-document.getElementById("current").onclick=()=>{mode="current";history=[];document.getElementById("current").classList.add("active");document.getElementById("stateful").classList.remove("active")};
-document.getElementById("auto").onclick=e=>{mode="state";autonomous=!autonomous;history=[];e.target.classList.toggle("active",autonomous);document.getElementById("stateful").classList.add("active");document.getElementById("current").classList.remove("active")};
+document.getElementById("stateful").onclick=()=>{mode="state";document.getElementById("stateful").classList.add("active");document.getElementById("current").classList.remove("active");render(argmax(active().pred(x)))};
+document.getElementById("current").onclick=()=>{mode="current";closed=false;document.getElementById("auto").classList.remove("active");document.getElementById("current").classList.add("active");document.getElementById("stateful").classList.remove("active");render(argmax(active().pred(x)))};
+document.getElementById("auto").onclick=e=>{mode="state";closed=!closed;lastHit=null;if(!closed){pos=argmax(x);dir=1}e.target.classList.toggle("active",closed);document.getElementById("stateful").classList.add("active");document.getElementById("current").classList.remove("active");render(argmax(active().pred(x)))};
 document.getElementById("restart").onclick=()=>{rebuild();resetWorld()};
 </script>
 </body>
