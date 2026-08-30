@@ -132,3 +132,75 @@ hidden state
 Child's potential distinction is locality, persistent physical-style
 addressability, and the separation of fast state / output gate / slow
 structure.  Those distinctions must earn measurable value.
+
+
+## Badhe, Tiwari & Chung — SKILL.state
+
+Sanket Badhe, Priyanka Tiwari and Jonghyun Chung (arXiv 2608.26263, accepted
+at EMNLP 2026), *SKILL.state: Scalable Long-Horizon Agent Skills*.
+
+The runtime replaces append-only conversational history with a mutable
+structured execution state.  At step t the model receives only:
+
+```math
+(P, Sigma_t, O_t)
+```
+
+where P is the immutable skill specification, Sigma_t the persistent execution
+state, and O_t the latest observation.  Intermediate reasoning is discarded
+after a validated state update.
+
+This is a strong engineering precedent for the Child idea that operational
+state need not be reconstructed from the whole textual trajectory.
+
+The paper also states the limitation that directly motivates Gate 2: explicit
+state is lossless only when it can be made a sufficient statistic.  It can fail
+when the relevance of an old observation was not recognized when that
+observation arrived and therefore was never committed to state.
+
+Child Gate 2 tests the smallest complement:
+
+```text
+canonical structured state
+        +
+bounded high-detail fast trace
+        ↓
+delayed relevance
+        ↓
+selective fast -> slow consolidation
+```
+
+This does not make Gate 2 a competitor to SKILL.state.  It attacks one of the
+paper's declared boundary conditions.
+
+## Fractal morphology — useful caution
+
+Fractal geometry is relevant to dendritic arbors, but Child should not turn
+"fractal" into a magic complexity scalar.
+
+Aizenbud et al. did not establish that greater fractal dimension causes greater
+functional complexity.  In their measured feature set, total dendritic area was
+the strongest single predictor of FCI, while branch allocation/path extent
+also mattered strongly; raw branch count was much weaker.
+
+Separate work by Smith et al. (Scientific Reports, 2021) and Rowland et al.
+(Frontiers in Network Physiology, 2023) treats limited-range fractal dimension
+as an integrated measure of dendritic length, forking, weaving, space filling,
+connectivity, and construction/operating cost.
+
+The Child translation worth testing is therefore not:
+
+```text
+higher fractal dimension -> smarter
+```
+
+but:
+
+```text
+multiscale sparse support
+    -> more useful reach across scales per persistent edge budget?
+```
+
+A future equal-budget topology gate should compare local, random, small-world,
+dyadic/fractal-like, and learned sparse supports before attributing any benefit
+to fractality.
