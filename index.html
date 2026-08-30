@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="Child is a sequence of executable attacks on local prediction, active observation, and selective memory.">
-<title>Child — seven executable attacks on prediction and memory</title>
+<title>Child — eight executable attacks on prediction and memory</title>
 <style>
 :root{color-scheme:dark;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;--bg:#090c11;--panel:#101722;--line:#273348;--text:#f2f5fa;--muted:#a8b3c4;--faint:#748197;--blue:#7da7e8;--cyan:#69d2cf;--orange:#ffbd6b;--red:#ff7f78;--green:#8bd49c}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;background:radial-gradient(circle at 70% -10%,#1a2941 0,transparent 32%),radial-gradient(circle at 0 30%,#111d2e 0,transparent 28%),var(--bg);color:var(--text)}
@@ -22,10 +22,10 @@ a{color:inherit}.wrap{width:min(1160px,calc(100% - 36px));margin:auto}.topbar{di
 </style>
 </head>
 <body>
-<header class="wrap topbar"><a class="brand" href="#top">CHILD</a><nav class="toplinks" aria-label="Primary"><a href="#gates">Gates 0–6</a><a href="#gate6">Latest result</a><a href="#gate0">Pulse lab</a><a href="https://github.com/anttiluode/Child">GitHub ↗</a></nav></header>
+<header class="wrap topbar"><a class="brand" href="#top">CHILD</a><nav class="toplinks" aria-label="Primary"><a href="#gates">Gates 0–7</a><a href="#gate7">Latest result</a><a href="#gate0">Pulse lab</a><a href="https://github.com/anttiluode/Child">GitHub ↗</a></nav></header>
 <main id="top">
 <section class="wrap hero">
-  <div class="eyebrow">Seven executable attacks · updated 30 August 2026</div>
+  <div class="eyebrow">Eight executable attacks · updated 30 August 2026</div>
   <h1>Prediction is not the conclusion.</h1>
   <p class="lead">The useful thread survived, but the grand reading did not. History can disambiguate a local present. Closing a predictor into a loop creates dynamics. Neither fact gives us agency, intelligence, or a new learning principle. The harder question is now: <strong>which evidence should the system pay to obtain, and what survives long enough for consequence to teach that choice?</strong></p>
   <div class="verdict"><article class="survived"><h2>What survived</h2><p>Persistent, addressable state changes what a local signal can mean. A temporary trace can keep delayed evidence reachable. The same mechanism can train a conditional decision to acquire another observation.</p></article><article class="removed"><h2>What did not</h2><p>Prediction loss is not motivation. A closed rollout is not autonomy. “Local” does not solve biological credit assignment. More observation is not automatically better when sensing has a cost.</p></article></div>
@@ -40,7 +40,8 @@ a{color:inherit}.wrap{width:min(1160px,calc(100% - 36px));margin:auto}.topbar{di
     <article class="card gate"><span class="number">GATE 3</span><h3>Context can be reinstated</h3><p>A noisy cue retrieves the temporal context of its earlier encounter with ordinary key-value episodic attention.</p><span class="attack"><strong>Territory:</strong> this is content-addressed memory, not a novel hippocampal mechanism.</span></article>
     <article class="card gate"><span class="number">GATE 4</span><h3>Learn what to retain</h3><p>A learned filter spends scarce slow memory better than fixed novelty or recency rules when future relevance is predictable.</p><span class="attack"><strong>Hidden gift:</strong> training received outcomes for retained and discarded events.</span></article>
     <article class="card gate"><span class="number">GATE 5</span><h3>Selection hides correction</h3><p>With feedback only for retained events, a successful filter can become a self-sealing observation mask under drift.</p><span class="attack"><strong>Requirement:</strong> exploration, side information, or a trace must restore observation support.</span></article>
-    <article class="card gate current"><span class="number">GATE 6</span><h3>Sensing has a price</h3><p>A delayed audit plus a surviving trial trace learns when another observation is worth buying and reallocates sensing after drift.</p><span class="attack"><strong>Attacker:</strong> the oracle is a one-line value-of-information threshold.</span></article>
+    <article class="card gate"><span class="number">GATE 6</span><h3>Sensing has a price</h3><p>A delayed audit plus a surviving trial trace learns when another observation is worth buying and reallocates sensing after drift.</p><span class="attack"><strong>Attacker:</strong> the oracle is a one-line value-of-information threshold.</span></article>
+    <article class="card gate current"><span class="number">GATE 7</span><h3>Time can be an address</h3><p>A fast read state routes forward or backward through represented time over a fixed sparse body.</p><span class="attack"><strong>Attacker:</strong> direct indexing and dense attention still win on ordinary RAM.</span></article>
   </div>
 </div></section>
 
@@ -59,6 +60,20 @@ LEARN through the surviving trial address</div><div class="context-grid"><span c
     <aside class="card"><div class="switches sense-buttons" aria-label="Active sensing policy"><button data-sense-policy="none">No sense</button><button data-sense-policy="always">Always</button><button data-sense-policy="forgetful">No trace</button><button class="active" data-sense-policy="delayed">Delayed trace</button><button data-sense-policy="immediate">Zero delay</button><button data-sense-policy="oracle">Oracle</button></div><div class="metrics"><div class="metric"><span>late accuracy</span><b id="g6Accuracy"></b><div class="barline"><i id="g6AccuracyBar"></i></div></div><div class="metric"><span>probe rate</span><b id="g6Sense"></b><div class="barline"><i id="g6SenseBar"></i></div></div><div class="metric"><span>net utility</span><b id="g6Utility"></b><div class="barline"><i id="g6UtilityBar"></i></div></div></div><p class="policy-copy" id="g6Copy"></p><div class="cost"><div>post-shift allocation<b id="g6Allocation"></b></div><div>delay / trace bill<b id="g6Cost"></b></div></div></aside>
   </div>
   <div class="card" style="margin-top:16px"><p class="earned"><strong>Earned:</strong> the delayed-trace learner preserves the approximately 90% accuracy of always sensing, removes nearly half the probe purchases, and reaches 0.8556 late utility versus the oracle's 0.8589. Its peak cost is 12 pending records, or 60 scalars. This is active-perception and value-of-information territory—not a new theory of attention.</p></div>
+</div></section>
+
+<section class="section" id="gate7"><div class="wrap">
+  <div class="section-head"><div><div class="eyebrow">Gate 7 · temporal routing</div><h2>Make replay a trajectory.</h2></div><p>After a cue returns an old episode's anchor, a local read head moves through a bounded represented-time ring. The graph is the slow body; the currently selected edge is the fast conductance.</p></div>
+  <div class="next"><div class="card"><div class="ident">anchor + target offset
+        ↓
+fast phase / read head
+        ↓
+local neighbour closest to target
+        ↓
+reinstated temporal context
+        ↓
+validated state update</div><p class="earned"><strong>Uniform offsets, 20 graph seeds:</strong> dyadic and learned supports reach 100% within eight hops; a reciprocal random graph has 100% oracle reach but only 10.3% local greedy success.</p></div><div class="card"><div class="receipt"><div>local ±1…±6</div><b>37.39%</b><div>reciprocal random</div><b>10.32%</b><div>small-world</div><b>96.94%</b><div>dyadic / learned</div><b>100.00%</b></div><p class="note">All arms have 3,072 persistent directed supports. Direct index is one fetch; dense attention scans 256 addresses. This is a topology result, not a general speed claim.</p></div></div>
+  <p class="earned"><strong>Interpretation:</strong> “jumping in time” means a nonlocal change in represented address or replay phase. It does not mean physical time travel. See <a href="TEMPORAL_REPLAY.md">the temporal replay note</a> and <a href="results/GATE7.md">the full receipt</a>.</p>
 </div></section>
 
 <section class="section" id="gate5"><div class="wrap">
@@ -108,20 +123,17 @@ closed-loop rollout</div><p class="note">A travelling wave maintained by its own
 </div></section>
 
 <section class="section"><div class="wrap">
-  <div class="section-head"><div><div class="eyebrow">Next attack · Gate 7</div><h2>Put the body under an edge budget.</h2></div><p>The proposed slow-body × fast-conductance factorization now needs a matched topology test. “Dendritic,” “fractal,” and “local” earn nothing unless their sparse support produces useful state-conditioned operators per persistent edge.</p></div>
-  <div class="next"><div class="card"><div class="ident">same persistent-edge budget
-  ├─ local lattice
-  ├─ random sparse
-  ├─ small-world
-  ├─ multiscale / dyadic
-  └─ learned support
+  <div class="section-head"><div><div class="eyebrow">Next attack · Gate 8</div><h2>Find the collective operator.</h2></div><p>Gate 7 makes a moving represented-time address measurable. The next question is whether a population-derived phase or order parameter can control an action more robustly than a hand-designed executive variable or random projection.</p></div>
+  <div class="next"><div class="card"><div class="ident">distributed population
         ↓
-fast state chooses current conductance
+phase / order parameter
         ↓
-task score + routing cost + attacker</div></div><div class="card"><ol><li><strong>Equalize parameters and edges:</strong> topology does not get a hidden capacity gift.</li><li><strong>Vary dependency range:</strong> local and long-range tasks should favor different supports.</li><li><strong>Attack the metaphor:</strong> compare against a small state-space model and sparse attention.</li><li><strong>Charge adaptation:</strong> count rewiring, fast routing state, and persistent storage separately.</li></ol></div></div>
+action or routing
+        ↓
+perturbation + synchrony cut</div></div><div class="card"><ol><li><strong>Equalize interfaces:</strong> collective, executive, and random readouts get the same action budget.</li><li><strong>Test reversal:</strong> speed and direction branches must be observable, not narrated.</li><li><strong>Cut synchrony:</strong> a causal perturbation should remove any collective advantage.</li><li><strong>Charge memory:</strong> delayed evidence still needs an addressable trace.</li></ol></div></div>
 </div></section>
 </main>
-<footer><div class="wrap"><span>Child · executable speculation under attack</span><span><a href="results/GATE6.md">Gate 6 receipt</a> · <a href="results/GATE5.md">Gate 5</a> · <a href="MATH.md">math</a> · <a href="PAPERS.md">papers</a> · <a href="https://github.com/anttiluode/Child">source</a></span></div></footer>
+<footer><div class="wrap"><span>Child · executable speculation under attack</span><span><a href="results/GATE7.md">Gate 7 receipt</a> · <a href="results/GATE6.md">Gate 6</a> · <a href="results/GATE5.md">Gate 5</a> · <a href="MATH.md">math</a> · <a href="PAPERS.md">papers</a> · <a href="https://github.com/anttiluode/Child">source</a></span></div></footer>
 <noscript><p class="wrap">The written receipts remain available without JavaScript; the two illustrations require it.</p></noscript>
 
 <script>
