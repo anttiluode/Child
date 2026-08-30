@@ -258,6 +258,34 @@ current cue
 Gate 3 implements this with ordinary key-value attention.  It does not claim
 hippocampal biology or causal directionality.
 
+## Reich et al. — forward and reverse delay-driven replay
+
+Reich et al. (arXiv:2608.21814, 2026), *Forward and reverse delay-driven
+hippocampal replay without symmetric plasticity*.
+
+This preprint models a hippocampal CA3 ring as a delay-coupled neural field.
+After a brief learned event, activity can replay forward or backward, and the
+replay speed is described by a low-dimensional phase variable.  The delayed
+system supports distinct speed branches whose stability changes with delay and
+coupling parameters; reverse replay need not require a mirror-image plasticity
+rule.
+
+That is close to the scientifically defensible version of “jumping in time”:
+motion through a represented sequence can have direction, phase, and regimes
+without any physical time travel.  It is prior territory, not validation of
+Child.
+
+The connection to the experiments is deliberately narrower:
+
+```text
+Gate 3: cue -> old episodic anchor
+Gate 7: anchor + target offset -> local moving read head
+future: delay/plasticity -> learned speed and reversal branches
+```
+
+Gate 7 tests the topology of that read head with equal persistent edge budgets;
+it does not reproduce the paper's neural-field equations.
+
 ## Selective labels — the policy controls which outcomes become knowable
 
 Himabindu Lakkaraju et al. (KDD, 2017), *The Selective Labels Problem:
