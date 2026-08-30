@@ -20,4 +20,5 @@ jobs:
       - run: python experiments/gate4_learn_what_to_remember.py
       - run: python experiments/gate5_policy_blindness_under_drift.py
       - run: python experiments/gate6_active_sensing_delayed_audit.py
+      - run: python experiments/gate7_temporal_routing_body.py
       - run: python -m unittest discover -s tests -v
