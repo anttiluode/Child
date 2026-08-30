@@ -13,8 +13,8 @@
       "peak_stored_scalars": {"mean": 80000.0, "std": 0.0}
     },
     "early_state": {
-      "first_accuracy": {"mean": 0.06518, "std": 0.0},
-      "repeat_accuracy": {"mean": 0.06518, "std": 0.0},
+      "first_accuracy": {"mean": 0.06518, "std": 0.0028049242414011823},
+      "repeat_accuracy": {"mean": 0.06518, "std": 0.0028049242414011823},
       "peak_stored_scalars": {"mean": 5000.0, "std": 0.0}
     },
     "oracle_state": {
@@ -30,7 +30,7 @@
     "hybrid": {
       "first_accuracy": {"mean": 1.0, "std": 0.0},
       "repeat_accuracy": {"mean": 1.0, "std": 0.0},
-      "peak_stored_scalars": {"mean": 6566.0, "std": 0.0}
+      "peak_stored_scalars": {"mean": 6566.0, "std": 1.8973665961010275}
     }
   }
 }
