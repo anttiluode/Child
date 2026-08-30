@@ -1,0 +1,418 @@
+{
+  "gate": 6,
+  "question": "Can a controller learn when to buy another observation when cue reliability changes and correctness is delayed?",
+  "pre_shift_trials": 6000,
+  "post_shift_trials": 6000,
+  "audit_delay_trials": 12,
+  "probe_cost": 0.08,
+  "probe_reliability": 0.9,
+  "base_reliability_old": [
+    0.9,
+    0.55
+  ],
+  "base_reliability_new": [
+    0.55,
+    0.9
+  ],
+  "reliability_learning_rate": 0.04,
+  "trace_scalars_per_trial": 5,
+  "seeds": 40,
+  "summary": {
+    "no_sense": {
+      "pre_late_accuracy": {
+        "mean": 0.7231250000000001,
+        "std": 0.01064938378498964
+      },
+      "pre_late_sense_rate": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "pre_late_utility": {
+        "mean": 0.7231250000000001,
+        "std": 0.01064938378498964
+      },
+      "post_early_utility": {
+        "mean": 0.7228999999999999,
+        "std": 0.019697461765415373
+      },
+      "post_late_accuracy": {
+        "mean": 0.7256,
+        "std": 0.009922953189449198
+      },
+      "post_late_sense_rate": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "post_late_utility": {
+        "mean": 0.7256,
+        "std": 0.009922953189449198
+      },
+      "post_late_sense_context_0": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "post_late_sense_context_1": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "recovery_trials": {
+        "mean_successful": null,
+        "std_successful": null
+      },
+      "recovered": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "peak_trace_records": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "peak_trace_scalars": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "final_base_reliability_0": {
+        "mean": null,
+        "std": null
+      },
+      "final_base_reliability_1": {
+        "mean": null,
+        "std": null
+      },
+      "final_probe_reliability": {
+        "mean": null,
+        "std": null
+      }
+    },
+    "always_sense": {
+      "pre_late_accuracy": {
+        "mean": 0.9006000000000001,
+        "std": 0.005719702789481286
+      },
+      "pre_late_sense_rate": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "pre_late_utility": {
+        "mean": 0.8206000000000001,
+        "std": 0.005719702789481284
+      },
+      "post_early_utility": {
+        "mean": 0.8185,
+        "std": 0.014083678496756418
+      },
+      "post_late_accuracy": {
+        "mean": 0.9007999999999999,
+        "std": 0.006961321713582848
+      },
+      "post_late_sense_rate": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "post_late_utility": {
+        "mean": 0.8208000000000002,
+        "std": 0.006961321713582831
+      },
+      "post_late_sense_context_0": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "post_late_sense_context_1": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "recovery_trials": {
+        "mean_successful": null,
+        "std_successful": null
+      },
+      "recovered": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "peak_trace_records": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "peak_trace_scalars": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "final_base_reliability_0": {
+        "mean": null,
+        "std": null
+      },
+      "final_base_reliability_1": {
+        "mean": null,
+        "std": null
+      },
+      "final_probe_reliability": {
+        "mean": null,
+        "std": null
+      }
+    },
+    "oracle": {
+      "pre_late_accuracy": {
+        "mean": 0.8997624999999999,
+        "std": 0.006421630926018729
+      },
+      "pre_late_sense_rate": {
+        "mean": 0.5013375,
+        "std": 0.00955862666652485
+      },
+      "pre_late_utility": {
+        "mean": 0.8596554999999999,
+        "std": 0.006410169245035571
+      },
+      "post_early_utility": {
+        "mean": 0.8593119999999999,
+        "std": 0.011762568427006067
+      },
+      "post_late_accuracy": {
+        "mean": 0.8988625000000001,
+        "std": 0.0064768699037420765
+      },
+      "post_late_sense_rate": {
+        "mean": 0.49957499999999994,
+        "std": 0.010561457049100756
+      },
+      "post_late_utility": {
+        "mean": 0.8588964999999998,
+        "std": 0.006353036891912395
+      },
+      "post_late_sense_context_0": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "post_late_sense_context_1": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "recovery_trials": {
+        "mean_successful": 200.0,
+        "std_successful": 0.0
+      },
+      "recovered": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "peak_trace_records": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "peak_trace_scalars": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "final_base_reliability_0": {
+        "mean": null,
+        "std": null
+      },
+      "final_base_reliability_1": {
+        "mean": null,
+        "std": null
+      },
+      "final_probe_reliability": {
+        "mean": null,
+        "std": null
+      }
+    },
+    "learned_no_trace": {
+      "pre_late_accuracy": {
+        "mean": 0.9006000000000001,
+        "std": 0.005719702789481286
+      },
+      "pre_late_sense_rate": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "pre_late_utility": {
+        "mean": 0.8206000000000001,
+        "std": 0.005719702789481284
+      },
+      "post_early_utility": {
+        "mean": 0.8185,
+        "std": 0.014083678496756418
+      },
+      "post_late_accuracy": {
+        "mean": 0.9007999999999999,
+        "std": 0.006961321713582848
+      },
+      "post_late_sense_rate": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "post_late_utility": {
+        "mean": 0.8208000000000002,
+        "std": 0.006961321713582831
+      },
+      "post_late_sense_context_0": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "post_late_sense_context_1": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "recovery_trials": {
+        "mean_successful": null,
+        "std_successful": null
+      },
+      "recovered": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "peak_trace_records": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "peak_trace_scalars": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "final_base_reliability_0": {
+        "mean": 0.5,
+        "std": 0.0
+      },
+      "final_base_reliability_1": {
+        "mean": 0.5,
+        "std": 0.0
+      },
+      "final_probe_reliability": {
+        "mean": 0.75,
+        "std": 0.0
+      }
+    },
+    "learned_trace": {
+      "pre_late_accuracy": {
+        "mean": 0.8999625,
+        "std": 0.0063249382408052095
+      },
+      "pre_late_sense_rate": {
+        "mean": 0.5434125,
+        "std": 0.023756285352512497
+      },
+      "pre_late_utility": {
+        "mean": 0.8564895,
+        "std": 0.0068464793689895715
+      },
+      "post_early_utility": {
+        "mean": 0.842168,
+        "std": 0.011126556340575465
+      },
+      "post_late_accuracy": {
+        "mean": 0.898875,
+        "std": 0.006631129240182251
+      },
+      "post_late_sense_rate": {
+        "mean": 0.5414625,
+        "std": 0.02254173559755327
+      },
+      "post_late_utility": {
+        "mean": 0.8555579999999999,
+        "std": 0.0067081782922042196
+      },
+      "post_late_sense_context_0": {
+        "mean": 0.9985577158260579,
+        "std": 0.0053426348913074954
+      },
+      "post_late_sense_context_1": {
+        "mean": 0.08515893496324976,
+        "std": 0.04046689033564907
+      },
+      "recovery_trials": {
+        "mean_successful": 283.9,
+        "std_successful": 71.0478008104403
+      },
+      "recovered": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "peak_trace_records": {
+        "mean": 12.0,
+        "std": 0.0
+      },
+      "peak_trace_scalars": {
+        "mean": 60.0,
+        "std": 0.0
+      },
+      "final_base_reliability_0": {
+        "mean": 0.5319765353579794,
+        "std": 0.06938089198996597
+      },
+      "final_base_reliability_1": {
+        "mean": 0.8883330776922598,
+        "std": 0.0388220164136544
+      },
+      "final_probe_reliability": {
+        "mean": 0.8963518122571145,
+        "std": 0.04197749072207676
+      }
+    },
+    "zero_delay_learner": {
+      "pre_late_accuracy": {
+        "mean": 0.9000625,
+        "std": 0.006962567324629626
+      },
+      "pre_late_sense_rate": {
+        "mean": 0.5438124999999999,
+        "std": 0.02399731430285482
+      },
+      "pre_late_utility": {
+        "mean": 0.8565574999999999,
+        "std": 0.0074645189898613
+      },
+      "post_early_utility": {
+        "mean": 0.8452300000000001,
+        "std": 0.012257904388597597
+      },
+      "post_late_accuracy": {
+        "mean": 0.8989625,
+        "std": 0.006313069281260908
+      },
+      "post_late_sense_rate": {
+        "mean": 0.5394124999999999,
+        "std": 0.021743932343299827
+      },
+      "post_late_utility": {
+        "mean": 0.8558095,
+        "std": 0.0063796770882232
+      },
+      "post_late_sense_context_0": {
+        "mean": 0.9990391437938794,
+        "std": 0.0039835194429392665
+      },
+      "post_late_sense_context_1": {
+        "mean": 0.08065815811003134,
+        "std": 0.03652444721911001
+      },
+      "recovery_trials": {
+        "mean_successful": 263.8,
+        "std_successful": 71.52419171161601
+      },
+      "recovered": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "peak_trace_records": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "peak_trace_scalars": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "final_base_reliability_0": {
+        "mean": 0.5279260328817006,
+        "std": 0.07494120300665384
+      },
+      "final_base_reliability_1": {
+        "mean": 0.89366667008797,
+        "std": 0.0403866888654485
+      },
+      "final_probe_reliability": {
+        "mean": 0.8920362067159031,
+        "std": 0.03426292691462787
+      }
+    }
+  }
+}

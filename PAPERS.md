@@ -317,3 +317,45 @@ This attacks any suggestion that Gate 5 invented surprise-triggered memory or
 stochastic reserve.  The remaining Child question is architectural: when
 outcome relevance is delayed, which information must survive in a fast trace so
 that a stronger established memory-selection rule can be updated at all?
+
+## Bajcsy — active perception
+
+Ruzena Bajcsy (Proceedings of the IEEE, 1988), *Active Perception*, DOI
+[`10.1109/5.5968`](https://doi.org/10.1109/5.5968).
+
+The durable constraint is that sensing is not merely a passive input channel.
+An agent can control how it samples the world, so observation choice belongs
+inside the decision problem and must carry a cost.
+
+Gate 6 is a very small value-of-observation instance:
+
+```text
+free ambiguous cue
+        ↓
+buy another observation?
+        ↓
+act
+        ↓
+delayed external audit
+```
+
+It does not reproduce Bajcsy's geometric, robotic, or control-theoretic
+framework.
+
+## Gottlieb et al. — attention and information seeking
+
+Jacqueline Gottlieb (Neuron, 2012), *Attention, Learning, and the Value of
+Information*, DOI
+[`10.1016/j.neuron.2012.09.034`](https://doi.org/10.1016/j.neuron.2012.09.034),
+and Gottlieb, Oudeyer, Lopes & Baranes (Trends in Cognitive Sciences, 2013),
+*Information-Seeking, Curiosity, and Attention: Computational and Neural
+Mechanisms*, DOI
+[`10.1016/j.tics.2013.09.001`](https://doi.org/10.1016/j.tics.2013.09.001).
+
+These reviews connect information sampling to uncertainty reduction, reward,
+learning progress, curiosity, and eye-movement control.  They are prior
+territory against any claim that Child invented uncertainty-sensitive sensing.
+
+Gate 6 tests a narrower architectural seam: delayed consequence cannot train a
+context-dependent sensing decision unless the old observation/action address
+survives until the audit arrives.

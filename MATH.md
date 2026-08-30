@@ -233,3 +233,51 @@ where each cell has a small persistent bank of local operator fragments
 
 That is close enough to attention to compare directly, but different enough to
 test whether persistent local dynamics buy something.
+
+## 9. Active sensing under delayed audit
+
+Let a visible context be `c_t`, a hidden binary target be `z_t`, and a free cue
+be correct with context-dependent reliability:
+
+```math
+P(x_t = z_t \mid c_t=c)=r_c.
+```
+
+An optional probe `s_t` is correct with reliability `r_s` and costs `k`.  For
+the symmetric binary Gate-6 world, acting from the stronger of two disagreeing
+cues gives:
+
+```math
+U(\text{ACT now}\mid c)=r_c,
+```
+
+```math
+U(\text{SENSE then ACT}\mid c)=\max(r_c,r_s)-k.
+```
+
+Therefore the value-of-observation gate is:
+
+```math
+\text{SENSE iff } \max(r_c,r_s)-r_c > k.
+```
+
+Correctness arrives `D` trials later.  Updating `r_c` then requires an
+eligibility/address record:
+
+```math
+e_t=(c_t,x_t,\text{probed}_t,s_t,a_t).
+```
+
+The delayed audit is:
+
+```math
+u_{t+D}=1[a_t=z_t].
+```
+
+In the binary toy, `(a_t,u_{t+D})` identifies `z_t`, after which `e_t` permits
+the free and probed cue reliabilities to be updated.  Without `e_t`, a scalar
+audit may estimate aggregate performance but cannot identify which old context
+or observation source should change.
+
+Gate 6 instantiates this with `D=12`, `r_s=0.90`, `k=0.08`, and a swap from
+`r=[0.90,0.55]` to `[0.55,0.90]`.

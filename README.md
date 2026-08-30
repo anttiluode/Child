@@ -1,6 +1,6 @@
 # Child — put prediction inside the running system
 
-**Status: Gates 0–5 built, 2026-08-30.**
+**Status: Gates 0–6 built, 2026-08-30.**
 
 `Child` starts from one intentionally naive question:
 
@@ -324,7 +324,7 @@ known region deteriorated; it cannot reveal an improvement it never observes.
 
 See [results/GATE5.md](results/GATE5.md).
 
-## Gate 6 — LEARN, SENSE, or ACT?
+## Gate 6 — active sensing under delayed audit — BUILT
 
 Prediction failure has at least three meanings:
 
@@ -337,6 +337,28 @@ the world should change   -> ACT
 Force these operations to have different costs and consequences.  The
 AlgoSchalgo observability results and Gate-1 illegal-predictor failure become
 attackers.
+
+Gate 6 gives each trial a hidden binary target, a visible context, and a free
+cue whose reliability depends on context.  A `0.90`-reliable probe costs `0.08`
+utility.  After 6,000 trials the two contexts exchange free-cue reliabilities;
+action correctness arrives 12 trials late.
+
+| policy | late accuracy | late probe rate | late net utility |
+|---|---:|---:|---:|
+| no sense | `0.7256 ± 0.0099` | `0.0000` | `0.7256 ± 0.0099` |
+| always sense | `0.9008 ± 0.0070` | `1.0000` | `0.8208 ± 0.0070` |
+| learned, no delayed trace | `0.9008 ± 0.0070` | `1.0000` | `0.8208 ± 0.0070` |
+| **learned + 12-trial trace** | **`0.8989 ± 0.0066`** | **`0.5415 ± 0.0225`** | **`0.8556 ± 0.0067`** |
+| zero-delay learner | `0.8990 ± 0.0063` | `0.5394 ± 0.0217` | `0.8558 ± 0.0064` |
+| oracle sensing threshold | `0.8989 ± 0.0065` | `0.4996 ± 0.0106` | `0.8589 ± 0.0064` |
+
+The delayed-trace learner reallocates sensing after the shift in all 40 seeds
+and nearly matches both the zero-delay learner and oracle.  Its peak bill is 12
+pending records × five scalars = 60 temporary scalars.  The no-trace learner
+cannot attach the delayed audit to the old context/cues/action and remains at
+its conservative always-probe initialization.
+
+See [results/GATE6.md](results/GATE6.md).
 
 ## Gate 7 — sparse body topology
 
@@ -378,11 +400,13 @@ python experiments/gate2_delayed_relevance.py
 python experiments/gate3_temporal_context_reinstatement.py
 python experiments/gate4_learn_what_to_remember.py
 python experiments/gate5_policy_blindness_under_drift.py
+python experiments/gate6_active_sensing_delayed_audit.py
 python -m unittest discover -s tests -v
 ```
 
 The experiment scripts write JSON receipts under `results/`. `index.html` is a
-browser illustration of Gate 0, not the canonical experimental receipt.
+cumulative browser map with Gate 0 and later interactive illustrations, not a
+replacement for the canonical experimental receipts.
 
 # Lineage
 
