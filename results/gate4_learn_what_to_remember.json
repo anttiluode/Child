@@ -1,0 +1,17 @@
+{
+  "gate": 4,
+  "blocks": 400,
+  "block_size": 100,
+  "memory_budget": 20,
+  "memory_fraction": 0.2,
+  "warmup_blocks": 50,
+  "learning_rate": 0.08,
+  "seeds": 20,
+  "summary": {
+    "random": {"mean": 0.19914226867700136, "std": 0.0022363299018540598},
+    "salience": {"mean": 0.39639730384769006, "std": 0.0030995018975416245},
+    "learned": {"mean": 0.4874204606748974, "std": 0.002854209501525505},
+    "oracle": {"mean": 0.4887216257072561, "std": 0.002664996365474313},
+    "full": {"mean": 1.0, "std": 0.0}
+  }
+}
