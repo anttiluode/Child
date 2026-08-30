@@ -1,6 +1,6 @@
 # Child — put prediction inside the running system
 
-**Status: Gates 0–1 built, 2026-08-30.**
+**Status: Gates 0–2 built, 2026-08-30.**
 
 `Child` starts from one intentionally naive question:
 
@@ -215,21 +215,72 @@ This earns:
 
 The fixed gate remains the boring engineering attacker. See [results/GATE1.md](results/GATE1.md) and [MATH.md](MATH.md).
 
-## Gate 2 — pulse only when information is missing
+## Gate 2 — delayed relevance: fast trace -> slow state — BUILT
 
-Bring in the narrow AlgoSchalgo result: prediction error is not observability. Buy an extra observation only when the current view cannot support the required distinction.
+The new SKILL.state paper makes explicit mutable execution state a strong
+alternative to replaying an ever-growing conversation history.  Its own
+boundary is equally important: an observation may become relevant only later,
+after the runtime failed to preserve it.
 
-## Gate 3 — fast state becomes slow knowledge
+Gate 2 gives every case 16 fields but reveals which one matters only 20–80
+steps later.  The same fact is queried again after the fast trace has expired.
 
-A temporary fast correction succeeds; consequence arrives later. Test whether correctly addressed eligibility can consolidate only the reusable part into bounded local structure.
+| system | first query | later repeat | peak scalar storage |
+|---|---:|---:|---:|
+| full history | 1.0000 | 1.0000 | 80,000 |
+| early one-field state | 0.0652 ± 0.0028 | 0.0652 ± 0.0028 | 5,000 |
+| oracle one-field state | 1.0000 | 1.0000 | 5,000 |
+| bounded fast trace only | 1.0000 | 0.0000 | 1,616 |
+| **fast trace -> slow state** | **1.0000** | **1.0000** | **6,566 ± 1.9** |
 
-## Gate 4 — representation drift
+The oracle remains the best answer when relevance is knowable at write time.
 
-Let the child's own internal coordinates become plastic. Test whether persistent address, temporal identity, and path memory preserve old function without global retraining.
+The hybrid buys something only when **future relevance is delayed**: retain a
+bounded high-detail trace until the system discovers what mattered, then
+project only that fragment into persistent state.
 
-## Gate 5 — boring attackers
+See [results/GATE2.md](results/GATE2.md).
 
-Explicit Markov/state-space models, reservoir + linear readout, GRU/RNN, small SSM, tiny transformer, and matched active-sensing controllers are all allowed to win.
+## Gate 3 — LEARN, SENSE, or ACT?
+
+Prediction failure has at least three meanings:
+
+```text
+my model is wrong         -> LEARN
+my observation is weak    -> SENSE
+the world should change   -> ACT
+```
+
+Force these operations to have different costs and consequences.  The
+AlgoSchalgo observability results and Gate-1 illegal-predictor failure become
+attackers.
+
+## Gate 4 — sparse body topology
+
+Test the candidate slow-body × fast-conductance factorization under equal
+persistent edge budget.  Compare local, random, small-world,
+dyadic/fractal-like, and learned sparse supports.  Fractality earns a role only
+if multiscale support buys something that simpler sparse graphs do not.
+
+## Gate 5 — collective operator
+
+Use the supplied "instanton" lesson carefully: a low-dimensional apparent
+agent can be a collective coordinate of distributed deterministic dynamics,
+not a privileged executive particle.  Ask whether a population order parameter
+can control a task more robustly than a random projection or hand-designed
+executive.
+
+## Gate 6 — representation drift
+
+Let the child's own internal coordinates become plastic. Test whether persistent
+address, temporal identity, and path memory preserve old function without
+global retraining.
+
+## Attackers
+
+Explicit Markov/state-space models, reservoir + linear readout, GRU/RNN, small
+SSM, tiny transformer, ordinary associative memory, and matched active-sensing
+controllers are all allowed to win.
 
 # Scaling
 
@@ -241,6 +292,7 @@ Gate 0 has `N=24`, radius `r=2`, and 11 parameters per cell. Its persistent pred
 python -m pip install -r requirements.txt
 python experiments/gate0_local_next_state.py
 python experiments/gate1_illegal_predictor.py
+python experiments/gate2_delayed_relevance.py
 python -m unittest discover -s tests -v
 ```
 
@@ -260,5 +312,6 @@ The executable writes `results/gate0_local_next_state.json`. `index.html` is a b
 - [MATH.md](MATH.md) — stateful operator equations and the endogenous-prediction problem.
 - [BODY_ATTENTION.md](BODY_ATTENTION.md) — candidate **slow body × fast conductance** factorization of attention.
 - [PAPERS.md](PAPERS.md) — neuroscience / ML references that constrain rather than validate the design.
+- [INSTANTON_NOTE.md](INSTANTON_NOTE.md) — why the green “particle” is actually a collective coordinate of a nonlinear field.
 
 The repo name is allowed to remain embarrassing until the machine earns a better one.
