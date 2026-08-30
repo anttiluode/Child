@@ -255,4 +255,10 @@ The executable writes `results/gate0_local_next_state.json`. `index.html` is a b
 - [Tuesday](https://github.com/anttiluode/Tuesday) — temporal structure as a source of identifiability.
 - [GeoNeuronX](https://github.com/anttiluode/GeoNeuronX) — history materialized into receiver state before readout.
 
+## Working architecture notes
+
+- [MATH.md](MATH.md) — stateful operator equations and the endogenous-prediction problem.
+- [BODY_ATTENTION.md](BODY_ATTENTION.md) — candidate **slow body × fast conductance** factorization of attention.
+- [PAPERS.md](PAPERS.md) — neuroscience / ML references that constrain rather than validate the design.
+
 The repo name is allowed to remain embarrassing until the machine earns a better one.
