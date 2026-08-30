@@ -204,3 +204,30 @@ multiscale sparse support
 A future equal-budget topology gate should compare local, random, small-world,
 dyadic/fractal-like, and learned sparse supports before attributing any benefit
 to fractality.
+
+
+## Zou, Hutchinson & Kuhl — hippocampal-guided temporal-context reconstruction
+
+Futing Zou, J. Benjamin Hutchinson & Brice A. Kuhl, *Hippocampal-guided
+reconstruction of an event's prior temporal context*, bioRxiv
+2025.08.05.668710 (version 2, 2025).
+
+This human 7T fMRI preprint used repeated natural scenes and inverted encoding
+models.  On re-encountering a scene, lateral occipitotemporal cortex (LOTC)
+contained information about visual scenes that had surrounded the original
+encounter.
+
+E1-E2 pattern similarity in hippocampal CA1 and CA2/3/dentate gyrus predicted
+the strength of LOTC temporal-context reconstruction; the reverse LOTC->MTL
+analysis was not significant.
+
+Child takes only the structural question:
+
+```text
+current cue
+    -> recover persistent episodic index
+    -> reinstate information that was temporally adjacent before
+```
+
+Gate 3 implements this with ordinary key-value attention.  It does not claim
+hippocampal biology or causal directionality.
