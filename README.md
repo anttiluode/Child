@@ -1,6 +1,6 @@
 # Child — put prediction inside the running system
 
-**Status: Gates 0–2 built, 2026-08-30.**
+**Status: Gates 0–4 built, 2026-08-30.**
 
 `Child` starts from one intentionally naive question:
 
@@ -241,7 +241,56 @@ project only that fragment into persistent state.
 
 See [results/GATE2.md](results/GATE2.md).
 
-## Gate 3 — LEARN, SENSE, or ACT?
+## Gate 3 — content-addressed temporal-context reinstatement — BUILT
+
+A noisy re-encountered cue must recover information about the events that
+surrounded its original encounter.
+
+The fast mechanism is intentionally ordinary episodic attention:
+
+```math
+alpha = softmax(beta q K^T)
+
+reinstated_context = alpha V.
+```
+
+Ten-seed receipt:
+
+| system / quantity | result |
+|---|---:|
+| cue-only held-out decoder | -0.0016 ± 0.0048 cosine |
+| **episodic reinstatement** | **0.9299 ± 0.0059** |
+| shuffled temporal links | 0.0022 ± 0.0108 |
+| random index | 0.0047 ± 0.0062 |
+| correct E1 top-1 identity | 0.9218 ± 0.0078 |
+| correct-index weight vs reinstatement | **r = 0.8415 ± 0.0146** |
+
+This is not a hippocampus model.  It demonstrates the architectural role of a
+persistent episodic index: a cue can retrieve its old temporal neighborhood
+even when no population-level cue->context law exists.
+
+See [results/GATE3.md](results/GATE3.md).
+
+## Gate 4 — learn what to remember — BUILT
+
+Slow memory gets only 20 slots for every 100 experiences.  Future relevance is
+unknown at write time but statistically predictable from current features.
+
+| write policy | later-needed events retained |
+|---|---:|
+| random | 0.1991 ± 0.0022 |
+| current salience | 0.3964 ± 0.0031 |
+| **learned future-value gate** | **0.4874 ± 0.0029** |
+| oracle probability ranking | 0.4887 ± 0.0027 |
+| full memory | 1.0000 |
+
+So selection quality can matter independently of raw memory size.  The learned
+gate preserves about 2.45x as many later-needed events as random retention
+under the same 20% capacity.
+
+See [results/GATE4.md](results/GATE4.md).
+
+## Gate 5 — LEARN, SENSE, or ACT?
 
 Prediction failure has at least three meanings:
 
@@ -255,14 +304,13 @@ Force these operations to have different costs and consequences.  The
 AlgoSchalgo observability results and Gate-1 illegal-predictor failure become
 attackers.
 
-## Gate 4 — sparse body topology
+## Gate 6 — sparse body topology
 
 Test the candidate slow-body × fast-conductance factorization under equal
 persistent edge budget.  Compare local, random, small-world,
-dyadic/fractal-like, and learned sparse supports.  Fractality earns a role only
-if multiscale support buys something that simpler sparse graphs do not.
+dyadic/fractal-like, and learned sparse supports.
 
-## Gate 5 — collective operator
+## Gate 7 — collective operator
 
 Use the supplied "instanton" lesson carefully: a low-dimensional apparent
 agent can be a collective coordinate of distributed deterministic dynamics,
@@ -270,7 +318,7 @@ not a privileged executive particle.  Ask whether a population order parameter
 can control a task more robustly than a random projection or hand-designed
 executive.
 
-## Gate 6 — representation drift
+## Gate 8 — representation drift
 
 Let the child's own internal coordinates become plastic. Test whether persistent
 address, temporal identity, and path memory preserve old function without
@@ -293,6 +341,8 @@ python -m pip install -r requirements.txt
 python experiments/gate0_local_next_state.py
 python experiments/gate1_illegal_predictor.py
 python experiments/gate2_delayed_relevance.py
+python experiments/gate3_temporal_context_reinstatement.py
+python experiments/gate4_learn_what_to_remember.py
 python -m unittest discover -s tests -v
 ```
 
