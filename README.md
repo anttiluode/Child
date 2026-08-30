@@ -1,6 +1,6 @@
 # Child — put prediction inside the running system
 
-**Status: Gate 0 built, 2026-08-30.**
+**Status: Gates 0–1 built, 2026-08-30.**
 
 `Child` starts from one intentionally naive question:
 
@@ -192,9 +192,28 @@ Gate 0 deliberately does not yet include biological spikes, theta, neurotransmit
 
 # Planned attacks
 
-## Gate 1 — the illegal predictor
+## Gate 1 — the illegal predictor — BUILT
 
-Give the system a limited actuator that changes/dampens what it will observe next. Compare prediction-only against prediction + homeostasis, action cost, and external task consequence. Does prediction learn the world or make the coupled world boring?
+The pulse now owns a local output gate: TRANSMIT lets the external dynamics advance; HOLD keeps the current state in place.
+
+The predictor is action-conditioned, so HOLD is honestly modeled rather than hidden from it. The output gate then learns from prediction correctness alone.
+
+Ten-seed frozen receipt:
+
+| arm | movement | prediction accuracy |
+|---|---:|---:|
+| **prediction only** | **0.0456 ± 0.0140** | **0.9544 ± 0.0140** |
+| prediction + local homeostasis | 0.8716 ± 0.0033 | 0.7216 ± 0.0050 |
+| fixed gate p=0.80 | 0.7991 ± 0.0048 | 0.6517 ± 0.0045 |
+| forced open | 1.0000 | 0.8483 ± 0.0030 |
+
+Prediction-only suppresses about 95% of possible motion. It did not become a brilliant model of the moving world; it changed the data-generating process into a nearly static one.
+
+This earns:
+
+> **When a predictor controls part of the transition process that generates its future input, prediction loss alone can select a low-dynamics attractor that makes prediction easy. A separate viability/homeostatic constraint can keep the system in a high-flow regime.**
+
+The fixed gate remains the boring engineering attacker. See [results/GATE1.md](results/GATE1.md) and [MATH.md](MATH.md).
 
 ## Gate 2 — pulse only when information is missing
 
@@ -221,6 +240,7 @@ Gate 0 has `N=24`, radius `r=2`, and 11 parameters per cell. Its persistent pred
 ```bash
 python -m pip install -r requirements.txt
 python experiments/gate0_local_next_state.py
+python experiments/gate1_illegal_predictor.py
 python -m unittest discover -s tests -v
 ```
 
