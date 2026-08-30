@@ -18,4 +18,5 @@ jobs:
       - run: python experiments/gate2_delayed_relevance.py
       - run: python experiments/gate3_temporal_context_reinstatement.py
       - run: python experiments/gate4_learn_what_to_remember.py
+      - run: python experiments/gate5_policy_blindness_under_drift.py
       - run: python -m unittest discover -s tests -v

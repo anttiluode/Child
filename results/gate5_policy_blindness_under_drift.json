@@ -1,0 +1,786 @@
+{
+  "gate": 5,
+  "question": "Can selective memory observe that its own policy became wrong, including when change occurs only off-policy?",
+  "groups": 5,
+  "events_per_group": 20,
+  "block_size": 100,
+  "memory_budget": 20,
+  "warmup_blocks": 40,
+  "pre_shift_blocks": 160,
+  "post_shift_blocks": 240,
+  "feedback_delay_blocks": 1,
+  "old_relevance_probability": [
+    0.75,
+    0.12,
+    0.1,
+    0.08,
+    0.06
+  ],
+  "new_relevance_probability": {
+    "visible_drop": [
+      0.45,
+      0.9,
+      0.1,
+      0.08,
+      0.06
+    ],
+    "strictly_hidden": [
+      0.75,
+      0.9,
+      0.1,
+      0.08,
+      0.06
+    ]
+  },
+  "value_learning_rate": 0.05,
+  "fixed_reserve_slots": 4,
+  "burst_reserve_slots": 12,
+  "burst_length": 20,
+  "surprise_gap": 0.15,
+  "surprise_patience": 4,
+  "recovery_window": 8,
+  "recovery_new_group_share": 0.75,
+  "seeds": 40,
+  "summary": {
+    "visible_drop": {
+      "frozen": {
+        "pre_shift_recall": {
+          "mean": 0.6830784312357239,
+          "std": 0.0065883114034276675
+        },
+        "post_early_recall": {
+          "mean": 0.27892353904311845,
+          "std": 0.009632432593721065
+        },
+        "post_late_recall": {
+          "mean": 0.28052445367563467,
+          "std": 0.005704477558806093
+        },
+        "post_all_recall": {
+          "mean": 0.2804710129226048,
+          "std": 0.00355259203182961
+        },
+        "post_late_new_group_share": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "recovery_blocks": {
+          "mean_successful": null,
+          "std_successful": null
+        },
+        "recovered": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "exploration_writes_per_block": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "false_pre_shift_bursts": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "persistent_slots": {
+          "mean": 20.0,
+          "std": 0.0
+        },
+        "extra_temporary_trace_slots": {
+          "mean": 0.0,
+          "std": 0.0
+        }
+      },
+      "greedy_selected": {
+        "pre_shift_recall": {
+          "mean": 0.6830784312357239,
+          "std": 0.0065883114034276675
+        },
+        "post_early_recall": {
+          "mean": 0.27892353904311845,
+          "std": 0.009632432593721065
+        },
+        "post_late_recall": {
+          "mean": 0.28046011544034055,
+          "std": 0.0057012273970592775
+        },
+        "post_all_recall": {
+          "mean": 0.28044956684417344,
+          "std": 0.003534504064265928
+        },
+        "post_late_new_group_share": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "recovery_blocks": {
+          "mean_successful": null,
+          "std_successful": null
+        },
+        "recovered": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "exploration_writes_per_block": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "false_pre_shift_bursts": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "persistent_slots": {
+          "mean": 20.0,
+          "std": 0.0
+        },
+        "extra_temporary_trace_slots": {
+          "mean": 0.0,
+          "std": 0.0
+        }
+      },
+      "fixed_reserve": {
+        "pre_shift_recall": {
+          "mean": 0.5670994788565691,
+          "std": 0.006816205599101495
+        },
+        "post_early_recall": {
+          "mean": 0.383220181592706,
+          "std": 0.038353370863582245
+        },
+        "post_late_recall": {
+          "mean": 0.4815012548135703,
+          "std": 0.00562514640373805
+        },
+        "post_all_recall": {
+          "mean": 0.4710766218070475,
+          "std": 0.004778982948341854
+        },
+        "post_late_new_group_share": {
+          "mean": 0.8103281249999998,
+          "std": 0.0027810305390942977
+        },
+        "recovery_blocks": {
+          "mean_successful": 19.25,
+          "std_successful": 4.181805830021284
+        },
+        "recovered": {
+          "mean": 1.0,
+          "std": 0.0
+        },
+        "exploration_writes_per_block": {
+          "mean": 4.0,
+          "std": 0.0
+        },
+        "false_pre_shift_bursts": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "persistent_slots": {
+          "mean": 20.0,
+          "std": 0.0
+        },
+        "extra_temporary_trace_slots": {
+          "mean": 0.0,
+          "std": 0.0
+        }
+      },
+      "surprise_burst": {
+        "pre_shift_recall": {
+          "mean": 0.6821468869892849,
+          "std": 0.008947829379958456
+        },
+        "post_early_recall": {
+          "mean": 0.303662074662037,
+          "std": 0.020897726556945884
+        },
+        "post_late_recall": {
+          "mean": 0.5702083644763205,
+          "std": 0.005545907554845199
+        },
+        "post_all_recall": {
+          "mean": 0.5404689191675214,
+          "std": 0.006592706180133781
+        },
+        "post_late_new_group_share": {
+          "mean": 1.0,
+          "std": 0.0
+        },
+        "recovery_blocks": {
+          "mean_successful": 31.175,
+          "std_successful": 4.38684111861827
+        },
+        "recovered": {
+          "mean": 1.0,
+          "std": 0.0
+        },
+        "exploration_writes_per_block": {
+          "mean": 0.615,
+          "std": 0.09367496997597595
+        },
+        "false_pre_shift_bursts": {
+          "mean": 0.025,
+          "std": 0.15612494995995996
+        },
+        "persistent_slots": {
+          "mean": 20.0,
+          "std": 0.0
+        },
+        "extra_temporary_trace_slots": {
+          "mean": 0.0,
+          "std": 0.0
+        }
+      },
+      "fast_trace": {
+        "pre_shift_recall": {
+          "mean": 0.6830784312357239,
+          "std": 0.0065883114034276675
+        },
+        "post_early_recall": {
+          "mean": 0.5563914707319217,
+          "std": 0.010686735351381647
+        },
+        "post_late_recall": {
+          "mean": 0.5702083644763205,
+          "std": 0.005545907554845199
+        },
+        "post_all_recall": {
+          "mean": 0.5689136165655119,
+          "std": 0.0033064232991061246
+        },
+        "post_late_new_group_share": {
+          "mean": 1.0,
+          "std": 0.0
+        },
+        "recovery_blocks": {
+          "mean_successful": 8.0,
+          "std_successful": 0.0
+        },
+        "recovered": {
+          "mean": 1.0,
+          "std": 0.0
+        },
+        "exploration_writes_per_block": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "false_pre_shift_bursts": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "persistent_slots": {
+          "mean": 20.0,
+          "std": 0.0
+        },
+        "extra_temporary_trace_slots": {
+          "mean": 80.0,
+          "std": 0.0
+        }
+      },
+      "random": {
+        "pre_shift_recall": {
+          "mean": 0.2009825647609534,
+          "std": 0.006578533045684691
+        },
+        "post_early_recall": {
+          "mean": 0.2044460426681185,
+          "std": 0.012481162596149639
+        },
+        "post_late_recall": {
+          "mean": 0.19809326398273439,
+          "std": 0.007087756891684976
+        },
+        "post_all_recall": {
+          "mean": 0.19937768965116529,
+          "std": 0.0038236007349141225
+        },
+        "post_late_new_group_share": {
+          "mean": 0.199609375,
+          "std": 0.00817136709702697
+        },
+        "recovery_blocks": {
+          "mean_successful": null,
+          "std_successful": null
+        },
+        "recovered": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "exploration_writes_per_block": {
+          "mean": 20.0,
+          "std": 0.0
+        },
+        "false_pre_shift_bursts": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "persistent_slots": {
+          "mean": 20.0,
+          "std": 0.0
+        },
+        "extra_temporary_trace_slots": {
+          "mean": 0.0,
+          "std": 0.0
+        }
+      },
+      "oracle": {
+        "pre_shift_recall": {
+          "mean": 0.6830784312357239,
+          "std": 0.0065883114034276675
+        },
+        "post_early_recall": {
+          "mean": 0.5702653507417433,
+          "std": 0.01096287461472163
+        },
+        "post_late_recall": {
+          "mean": 0.5702083644763205,
+          "std": 0.005545907554845199
+        },
+        "post_all_recall": {
+          "mean": 0.5703588123998683,
+          "std": 0.0032060710729313224
+        },
+        "post_late_new_group_share": {
+          "mean": 1.0,
+          "std": 0.0
+        },
+        "recovery_blocks": {
+          "mean_successful": 8.0,
+          "std_successful": 0.0
+        },
+        "recovered": {
+          "mean": 1.0,
+          "std": 0.0
+        },
+        "exploration_writes_per_block": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "false_pre_shift_bursts": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "persistent_slots": {
+          "mean": 20.0,
+          "std": 0.0
+        },
+        "extra_temporary_trace_slots": {
+          "mean": 0.0,
+          "std": 0.0
+        }
+      },
+      "full": {
+        "pre_shift_recall": {
+          "mean": 1.0,
+          "std": 0.0
+        },
+        "post_early_recall": {
+          "mean": 1.0,
+          "std": 0.0
+        },
+        "post_late_recall": {
+          "mean": 1.0,
+          "std": 0.0
+        },
+        "post_all_recall": {
+          "mean": 1.0,
+          "std": 0.0
+        },
+        "post_late_new_group_share": {
+          "mean": 0.19999999999999998,
+          "std": 0.0
+        },
+        "recovery_blocks": {
+          "mean_successful": null,
+          "std_successful": null
+        },
+        "recovered": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "exploration_writes_per_block": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "false_pre_shift_bursts": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "persistent_slots": {
+          "mean": 100.0,
+          "std": 0.0
+        },
+        "extra_temporary_trace_slots": {
+          "mean": 0.0,
+          "std": 0.0
+        }
+      }
+    },
+    "strictly_hidden": {
+      "frozen": {
+        "pre_shift_recall": {
+          "mean": 0.6830784312357239,
+          "std": 0.0065883114034276675
+        },
+        "post_early_recall": {
+          "mean": 0.39698129899324924,
+          "std": 0.008374226945185448
+        },
+        "post_late_recall": {
+          "mean": 0.39612881259935745,
+          "std": 0.00447742164852023
+        },
+        "post_all_recall": {
+          "mean": 0.39679691939570755,
+          "std": 0.002577757770666219
+        },
+        "post_late_new_group_share": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "recovery_blocks": {
+          "mean_successful": null,
+          "std_successful": null
+        },
+        "recovered": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "exploration_writes_per_block": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "false_pre_shift_bursts": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "persistent_slots": {
+          "mean": 20.0,
+          "std": 0.0
+        },
+        "extra_temporary_trace_slots": {
+          "mean": 0.0,
+          "std": 0.0
+        }
+      },
+      "greedy_selected": {
+        "pre_shift_recall": {
+          "mean": 0.6830784312357239,
+          "std": 0.0065883114034276675
+        },
+        "post_early_recall": {
+          "mean": 0.39698129899324924,
+          "std": 0.008374226945185448
+        },
+        "post_late_recall": {
+          "mean": 0.39612881259935745,
+          "std": 0.00447742164852023
+        },
+        "post_all_recall": {
+          "mean": 0.39679691939570755,
+          "std": 0.002577757770666219
+        },
+        "post_late_new_group_share": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "recovery_blocks": {
+          "mean_successful": null,
+          "std_successful": null
+        },
+        "recovered": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "exploration_writes_per_block": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "false_pre_shift_bursts": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "persistent_slots": {
+          "mean": 20.0,
+          "std": 0.0
+        },
+        "extra_temporary_trace_slots": {
+          "mean": 0.0,
+          "std": 0.0
+        }
+      },
+      "fixed_reserve": {
+        "pre_shift_recall": {
+          "mean": 0.5670994788565691,
+          "std": 0.006816205599101495
+        },
+        "post_early_recall": {
+          "mean": 0.3549678707239553,
+          "std": 0.00952029944886957
+        },
+        "post_late_recall": {
+          "mean": 0.40951238253682726,
+          "std": 0.00497063608205759
+        },
+        "post_all_recall": {
+          "mean": 0.4033148720746224,
+          "std": 0.0031080856490440264
+        },
+        "post_late_new_group_share": {
+          "mean": 0.790171875,
+          "std": 0.020170168401859607
+        },
+        "recovery_blocks": {
+          "mean_successful": 34.3,
+          "std_successful": 6.4892218331630485
+        },
+        "recovered": {
+          "mean": 1.0,
+          "std": 0.0
+        },
+        "exploration_writes_per_block": {
+          "mean": 4.0,
+          "std": 0.0
+        },
+        "false_pre_shift_bursts": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "persistent_slots": {
+          "mean": 20.0,
+          "std": 0.0
+        },
+        "extra_temporary_trace_slots": {
+          "mean": 0.0,
+          "std": 0.0
+        }
+      },
+      "surprise_burst": {
+        "pre_shift_recall": {
+          "mean": 0.6821468869892849,
+          "std": 0.008947829379958456
+        },
+        "post_early_recall": {
+          "mean": 0.3953453082199838,
+          "std": 0.014565584715531968
+        },
+        "post_late_recall": {
+          "mean": 0.3983436375332746,
+          "std": 0.013681438766211593
+        },
+        "post_all_recall": {
+          "mean": 0.3985049728706237,
+          "std": 0.010572312095527937
+        },
+        "post_late_new_group_share": {
+          "mean": 0.025,
+          "std": 0.15612494995995996
+        },
+        "recovery_blocks": {
+          "mean_successful": 26.0,
+          "std_successful": 0.0
+        },
+        "recovered": {
+          "mean": 0.025,
+          "std": 0.15612494995995996
+        },
+        "exploration_writes_per_block": {
+          "mean": 0.03,
+          "std": 0.1307669683062202
+        },
+        "false_pre_shift_bursts": {
+          "mean": 0.025,
+          "std": 0.15612494995995996
+        },
+        "persistent_slots": {
+          "mean": 20.0,
+          "std": 0.0
+        },
+        "extra_temporary_trace_slots": {
+          "mean": 0.0,
+          "std": 0.0
+        }
+      },
+      "fast_trace": {
+        "pre_shift_recall": {
+          "mean": 0.6830784312357239,
+          "std": 0.0065883114034276675
+        },
+        "post_early_recall": {
+          "mean": 0.4674405548410415,
+          "std": 0.00877705752750991
+        },
+        "post_late_recall": {
+          "mean": 0.475765659937,
+          "std": 0.004821543592400861
+        },
+        "post_all_recall": {
+          "mean": 0.4744741383669778,
+          "std": 0.002578542632885279
+        },
+        "post_late_new_group_share": {
+          "mean": 0.9696875,
+          "std": 0.01934221015680474
+        },
+        "recovery_blocks": {
+          "mean_successful": 8.5,
+          "std_successful": 0.6324555320336759
+        },
+        "recovered": {
+          "mean": 1.0,
+          "std": 0.0
+        },
+        "exploration_writes_per_block": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "false_pre_shift_bursts": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "persistent_slots": {
+          "mean": 20.0,
+          "std": 0.0
+        },
+        "extra_temporary_trace_slots": {
+          "mean": 80.0,
+          "std": 0.0
+        }
+      },
+      "random": {
+        "pre_shift_recall": {
+          "mean": 0.2009825647609534,
+          "std": 0.006578533045684691
+        },
+        "post_early_recall": {
+          "mean": 0.20207407300237876,
+          "std": 0.01090143790681356
+        },
+        "post_late_recall": {
+          "mean": 0.1994000640478429,
+          "std": 0.006907076405848511
+        },
+        "post_all_recall": {
+          "mean": 0.19943277868823248,
+          "std": 0.0034127598690490532
+        },
+        "post_late_new_group_share": {
+          "mean": 0.199609375,
+          "std": 0.00817136709702697
+        },
+        "recovery_blocks": {
+          "mean_successful": null,
+          "std_successful": null
+        },
+        "recovered": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "exploration_writes_per_block": {
+          "mean": 20.0,
+          "std": 0.0
+        },
+        "false_pre_shift_bursts": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "persistent_slots": {
+          "mean": 20.0,
+          "std": 0.0
+        },
+        "extra_temporary_trace_slots": {
+          "mean": 0.0,
+          "std": 0.0
+        }
+      },
+      "oracle": {
+        "pre_shift_recall": {
+          "mean": 0.6830784312357239,
+          "std": 0.0065883114034276675
+        },
+        "post_early_recall": {
+          "mean": 0.47645170641491974,
+          "std": 0.007317929461289088
+        },
+        "post_late_recall": {
+          "mean": 0.47817266231964917,
+          "std": 0.0040344758564884835
+        },
+        "post_all_recall": {
+          "mean": 0.47774284192528516,
+          "std": 0.002169951160573982
+        },
+        "post_late_new_group_share": {
+          "mean": 1.0,
+          "std": 0.0
+        },
+        "recovery_blocks": {
+          "mean_successful": 8.0,
+          "std_successful": 0.0
+        },
+        "recovered": {
+          "mean": 1.0,
+          "std": 0.0
+        },
+        "exploration_writes_per_block": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "false_pre_shift_bursts": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "persistent_slots": {
+          "mean": 20.0,
+          "std": 0.0
+        },
+        "extra_temporary_trace_slots": {
+          "mean": 0.0,
+          "std": 0.0
+        }
+      },
+      "full": {
+        "pre_shift_recall": {
+          "mean": 1.0,
+          "std": 0.0
+        },
+        "post_early_recall": {
+          "mean": 1.0,
+          "std": 0.0
+        },
+        "post_late_recall": {
+          "mean": 1.0,
+          "std": 0.0
+        },
+        "post_all_recall": {
+          "mean": 1.0,
+          "std": 0.0
+        },
+        "post_late_new_group_share": {
+          "mean": 0.19999999999999998,
+          "std": 0.0
+        },
+        "recovery_blocks": {
+          "mean_successful": null,
+          "std_successful": null
+        },
+        "recovered": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "exploration_writes_per_block": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "false_pre_shift_bursts": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "persistent_slots": {
+          "mean": 100.0,
+          "std": 0.0
+        },
+        "extra_temporary_trace_slots": {
+          "mean": 0.0,
+          "std": 0.0
+        }
+      }
+    }
+  }
+}

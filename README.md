@@ -1,6 +1,6 @@
 # Child — put prediction inside the running system
 
-**Status: Gates 0–4 built, 2026-08-30.**
+**Status: Gates 0–5 built, 2026-08-30.**
 
 `Child` starts from one intentionally naive question:
 
@@ -290,7 +290,41 @@ under the same 20% capacity.
 
 See [results/GATE4.md](results/GATE4.md).
 
-## Gate 5 — LEARN, SENSE, or ACT?
+## Gate 5 — policy blindness under drift — BUILT
+
+Gate 4's learned filter received later relevance outcomes for every candidate,
+including discarded events.  Gate 5 makes that feedback selective and changes
+the relevance law without announcement.
+
+The old best group remains moderately useful while a previously poor,
+unobserved group becomes optimal.  A greedy continuously updated gate never
+discovers it in any of 40 seeds.
+
+| 20-slot policy | pre-shift recall | late post-shift recall | recovery |
+|---|---:|---:|---:|
+| greedy selected-feedback | 0.6831 ± 0.0066 | 0.2805 ± 0.0057 | 0/40 |
+| fixed four-slot reserve | 0.5671 ± 0.0068 | 0.4815 ± 0.0056 | 40/40 |
+| **surprise-triggered reserve** | **0.6821 ± 0.0089** | **0.5702 ± 0.0055** | **40/40** |
+| **fast trace** | **0.6831 ± 0.0066** | **0.5702 ± 0.0055** | **40/40** |
+| oracle probability ranking | 0.6831 ± 0.0066 | 0.5702 ± 0.0055 | 40/40 |
+
+The triggered policy reaches oracle late recall with only 0.615 exploratory
+writes per block on average, versus four for the fixed reserve.  The fast trace
+recovers much faster but temporarily stores the 80 discarded event identities.
+
+This earns a precise boundary: online learning cannot recover a value change in
+a region from which its own policy obtains no identifying feedback.  Some
+exploration, side information, or surviving trace is necessary.
+
+In a stricter second world the selected group's outcomes do not change at all
+while an ignored group becomes better.  The surprise-triggered policy then
+fails in 39/40 seeds; its one recovery is an accidental false-alarm burst.
+Fixed reserve and fast trace recover in 40/40.  Surprise can reveal that the
+known region deteriorated; it cannot reveal an improvement it never observes.
+
+See [results/GATE5.md](results/GATE5.md).
+
+## Gate 6 — LEARN, SENSE, or ACT?
 
 Prediction failure has at least three meanings:
 
@@ -304,13 +338,13 @@ Force these operations to have different costs and consequences.  The
 AlgoSchalgo observability results and Gate-1 illegal-predictor failure become
 attackers.
 
-## Gate 6 — sparse body topology
+## Gate 7 — sparse body topology
 
 Test the candidate slow-body × fast-conductance factorization under equal
 persistent edge budget.  Compare local, random, small-world,
 dyadic/fractal-like, and learned sparse supports.
 
-## Gate 7 — collective operator
+## Gate 8 — collective operator
 
 Use the supplied "instanton" lesson carefully: a low-dimensional apparent
 agent can be a collective coordinate of distributed deterministic dynamics,
@@ -318,7 +352,7 @@ not a privileged executive particle.  Ask whether a population order parameter
 can control a task more robustly than a random projection or hand-designed
 executive.
 
-## Gate 8 — representation drift
+## Gate 9 — representation drift
 
 Let the child's own internal coordinates become plastic. Test whether persistent
 address, temporal identity, and path memory preserve old function without
@@ -343,10 +377,12 @@ python experiments/gate1_illegal_predictor.py
 python experiments/gate2_delayed_relevance.py
 python experiments/gate3_temporal_context_reinstatement.py
 python experiments/gate4_learn_what_to_remember.py
+python experiments/gate5_policy_blindness_under_drift.py
 python -m unittest discover -s tests -v
 ```
 
-The executable writes `results/gate0_local_next_state.json`. `index.html` is a browser illustration, not the experimental receipt.
+The experiment scripts write JSON receipts under `results/`. `index.html` is a
+browser illustration of Gate 0, not the canonical experimental receipt.
 
 # Lineage
 

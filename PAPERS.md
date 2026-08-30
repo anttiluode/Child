@@ -86,6 +86,32 @@ backpropagation.
 Child should therefore not assume that all slow learning receives only one
 broadcast scalar consequence.
 
+## von Hünerbein et al. — dendritic structure as learning machinery
+
+Ben von Hünerbein et al. (arXiv:2608.23251, 2026), *Dendritic structure enables
+powerful plasticity*.
+
+This new review/preprint sharpens the reason compartments might matter.  Its
+claim is not merely that dendrites expand a neuron's representational function;
+compartmentalization can give synapses faster and more specific access to
+locally differentiated variables from which error-like learning signals can be
+constructed.
+
+That is directly relevant to Child's candidate separation:
+
+```text
+local compartment state
+    +
+cell/branch-specific instruction
+        ↓
+more addressed slow plasticity than
+one Hebbian pair times one global scalar
+```
+
+It is a review and architectural argument, not evidence that
+`slow body × fast conductance` is a useful AI implementation.  A point model or
+ordinary backpropagation remains the engineering attacker.
+
 ## Yamada & Chao — predicting what and when
 
 Yohei Yamada and Zenas C. Chao (Communications Biology, 2026), *Joint encoding
@@ -231,3 +257,63 @@ current cue
 
 Gate 3 implements this with ordinary key-value attention.  It does not claim
 hippocampal biology or causal directionality.
+
+## Selective labels — the policy controls which outcomes become knowable
+
+Himabindu Lakkaraju et al. (KDD, 2017), *The Selective Labels Problem:
+Evaluating Algorithmic Predictions in the Presence of Unobservables*.
+
+Their application is human/algorithmic decision evaluation, not memory.  The
+relevant mathematical warning is general: outcomes may be observed only for
+cases selected by the historical policy, so the labeled set does not identify
+performance on the unselected population.
+
+Gate 5 uses a small memory analogue:
+
+```text
+discard event address
+        ↓
+later outcome cannot update the value of that event region
+        ↓
+write policy shapes its own future training support
+```
+
+This is established selective-feedback territory.  Child's contribution is
+only to make Gate 4 pay for the trace or exploration that its full-feedback
+update had assumed.
+
+## Isele & Cosgun — selective experience replay
+
+David Isele and Akansel Cosgun (AAAI, 2018), *Selective Experience Replay for
+Lifelong Learning*.
+
+They compare long-term replay selection by surprise, reward, distribution
+matching, and coverage.  Distribution matching was the most consistently
+successful strategy in their tested domains.
+
+This is an important attacker for Child's learned memory value:
+
+```text
+highest predicted future value only
+    may collapse observation coverage
+
+distribution / coverage reserve
+    may preserve adaptation under change
+```
+
+Gate 5's four random reserve slots are deliberately cruder than established
+selective replay methods.
+
+## Sun et al. — information-theoretic online memory selection
+
+Shengyang Sun et al. (ICLR, 2022), *Information-theoretic Online Memory
+Selection for Continual Learning*.
+
+The paper proposes surprise and learnability criteria and a stochastic
+information-theoretic reservoir sampler, emphasizing both which stream items
+are informative and when memory should update.
+
+This attacks any suggestion that Gate 5 invented surprise-triggered memory or
+stochastic reserve.  The remaining Child question is architectural: when
+outcome relevance is delayed, which information must survive in a fast trace so
+that a stronger established memory-selection rule can be updated at all?

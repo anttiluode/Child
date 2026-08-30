@@ -172,7 +172,48 @@ E[ell]
 
 Gate 1 is the smallest executable example of this distinction.
 
-## 7. What could become genuinely interesting
+## 7. Selective-memory feedback is policy-dependent observation
+
+Let event `e_t` expose features `phi_t`, let `y_t` be its later relevance, and
+let the memory write decision be:
+
+```math
+a_t in {0,1}.
+```
+
+If discarding the event also discards the address/features needed to interpret
+its later outcome, the value learner observes:
+
+```math
+O_t = (a_t, a_t y_t, a_t phi_t).
+```
+
+For a feature region `R` with zero write propensity,
+
+```math
+P(a_t=1 | phi_t in R) = 0,
+```
+
+the relevance law inside `R` is not identifiable from `O_t`.  Two worlds can
+agree on every selected outcome and differ arbitrarily on:
+
+```math
+P(y_t=1 | phi_t in R).
+```
+
+Continuous parameter updates do not solve missing support.  At least one of
+the following must make the counterfactual region observable:
+
+```text
+nonzero exploration propensity
+side information / structural assumption
+temporary trace surviving until feedback
+```
+
+Gate 5 is a finite categorical demonstration of this standard
+selective-feedback boundary.
+
+## 8. What could become genuinely interesting
 
 The target is not to simulate every dendritic compartment.
 

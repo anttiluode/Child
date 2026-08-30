@@ -195,3 +195,15 @@ Compare:
   law is discovered.
 
 This joins forgetting, plasticity, and the Gate-2 fast trace in one experiment.
+
+## Hidden assumption exposed by Gate 5
+
+This implementation updates the learned value gate from the later outcomes of
+all 100 candidate events, including the 80 it did not retain.
+
+That is legitimate full feedback, but it means the experiment does not pay for
+the event address/features needed to interpret feedback about discarded items.
+Gate 5 removes that assumption.  When outcomes are visible only for retained
+events, a greedy adaptive gate can become self-confirming under distribution
+shift; reserve sampling or a temporary trace is needed to restore observation
+support.
