@@ -1,0 +1,34 @@
+{
+  "gate": 1,
+  "n_cells": 24,
+  "reversal_probability": 0.15,
+  "pretrain_steps": 4000,
+  "adapt_steps": 12000,
+  "eval_steps": 4000,
+  "seeds": 10,
+  "gate_learning_rate": 0.05,
+  "homeostasis_strength": 0.05,
+  "target_transmission": 0.8,
+  "summary": {
+    "prediction_only": {
+      "movement_fraction": {"mean": 0.045575, "std": 0.013950828828424496},
+      "prediction_accuracy": {"mean": 0.9543750000000001, "std": 0.014008591114027125},
+      "mean_transmission_probability": {"mean": 0.08307825292325446, "std": 0.013202189596534658}
+    },
+    "prediction_homeostasis": {
+      "movement_fraction": {"mean": 0.8715999999999999, "std": 0.0033207679834640577},
+      "prediction_accuracy": {"mean": 0.721625, "std": 0.004986544394668498},
+      "mean_transmission_probability": {"mean": 0.8736026008274669, "std": 0.0023389076933864462}
+    },
+    "fixed_80": {
+      "movement_fraction": {"mean": 0.799075, "std": 0.004841293732051391},
+      "prediction_accuracy": {"mean": 0.65165, "std": 0.004532107677449871},
+      "mean_transmission_probability": {"mean": 0.8, "std": 0.0}
+    },
+    "forced_open": {
+      "movement_fraction": {"mean": 1.0, "std": 0.0},
+      "prediction_accuracy": {"mean": 0.84825, "std": 0.003008321791298251},
+      "mean_transmission_probability": {"mean": 1.0, "std": 0.0}
+    }
+  }
+}
