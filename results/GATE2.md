@@ -70,10 +70,10 @@ Then discard the raw episode normally.
 | system | first delayed query | later repeat | peak stored scalars |
 |---|---:|---:|---:|
 | full history | **1.0000** | **1.0000** | 80,000 |
-| early structured state | 0.0652 | 0.0652 | 5,000 |
+| early structured state | 0.0652 ± 0.0028 | 0.0652 ± 0.0028 | 5,000 |
 | oracle structured state | **1.0000** | **1.0000** | 5,000 |
 | fast trace only | **1.0000** | 0.0000 | 1,616 |
-| **fast trace -> slow state** | **1.0000** | **1.0000** | **6,566** |
+| **fast trace -> slow state** | **1.0000** | **1.0000** | **6,566 ± 1.9** |
 
 Chance that the early one-field state happened to retain the later-requested
 field is 1/16 = 0.0625, matching the receipt.
