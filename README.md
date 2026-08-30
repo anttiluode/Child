@@ -1,6 +1,6 @@
 # Child — put prediction inside the running system
 
-**Status: Gates 0–6 built, 2026-08-30.**
+**Status: Gates 0–7 built, 2026-08-30.**
 
 `Child` starts from one intentionally naive question:
 
@@ -20,6 +20,8 @@ persistent local addressability
 state-dependent continuation
         +
 later: active observation + delayed consequence
+        +
+represented-time replay over a bounded sparse body
 ```
 
 The point of Gate 0 is to make that seam executable before adding dendrites, neurotransmitters, oscillators, global reward, or another mythology layer.
@@ -360,11 +362,55 @@ its conservative always-probe initialization.
 
 See [results/GATE6.md](results/GATE6.md).
 
-## Gate 7 — sparse body topology
+## Gate 7 — temporal routing over a sparse body — BUILT
 
-Test the candidate slow-body × fast-conductance factorization under equal
-persistent edge budget.  Compare local, random, small-world,
-dyadic/fractal-like, and learned sparse supports.
+Gate 3 already recovers an old episode's content-addressed anchor.  Gate 7
+asks the next, narrower question: after the anchor is found, can a fast read
+state reach a requested **represented-time offset** through a slow sparse body
+using only its current neighbours?  The route may move forward or backward on
+a periodic temporal address ring; no physical time travel is implied.
+
+Every body has 256 addresses, out-degree 12, exactly 3,072 persistent directed
+supports, and an eight-hop budget.  The local router opens the neighbour whose
+address is closest to the requested target.  Reciprocal random and small-world
+graphs are degree-matched to the circulant baselines.  An oracle shortest-path
+receipt is included so graph reach is not confused with local navigability.
+
+| body | uniform greedy success | capped hops | oracle success |
+|---|---:|---:|---:|
+| local ±1…±6 | `0.3739 ± 0.0075` | `7.317` | `0.3739` |
+| reciprocal random | `0.1032 ± 0.0053` | `8.258` | `1.0000` |
+| degree-matched small-world | `0.9694 ± 0.0087` | `4.346` | `1.0000` |
+| dyadic ±1,2,4,8,16,32 | `1.0000 ± 0.0000` | `3.621` | `1.0000` |
+| learned lag support 1,2,4,8,32,64 | `1.0000 ± 0.0000` | `3.151` | `1.0000` |
+
+The direct-index attacker still wins on ordinary random-access software (one
+fetch), and dense attention scans 256 addresses.  The result is therefore not
+an efficiency claim against RAM or transformers.  It is a concrete topology
+result: multiscale supports make a represented-time address locally navigable
+under the same persistent edge budget, while random reach without a local
+policy is not enough.
+
+See [results/GATE7.md](results/GATE7.md),
+[TEMPORAL_REPLAY.md](TEMPORAL_REPLAY.md), and the raw
+[JSON receipt](results/gate7_temporal_routing_body.json).
+
+## Temporal replay connection
+
+The accidental “jump in four dimensions” thought becomes testable only after
+separating physical coordinates from **represented time**.  In Child, a
+temporary trace preserves delayed relevance; Gate 3 reopens an old temporal
+neighbourhood; Gate 7 moves a read head over that neighbourhood.  A large jump
+is then a change of address or replay phase, not a particle violating
+causality.  Reversal and distinct speed branches are meaningful dynamical
+variables, provided the field/local-state diagnostics move with the readout.
+
+This is close in spirit to delay-coupled hippocampal replay models that produce
+forward and reverse waves with distinct stable speeds (Reich et al., 2026,
+[arXiv:2608.21814](https://arxiv.org/abs/2608.21814)).  That preprint is prior
+territory and a constraint on the idea, not validation of this toy.  The
+instanton note supplies the complementary warning: an apparent moving agent
+can be a collective coordinate of distributed nonlinear dynamics.
 
 ## Gate 8 — collective operator
 
@@ -401,6 +447,7 @@ python experiments/gate3_temporal_context_reinstatement.py
 python experiments/gate4_learn_what_to_remember.py
 python experiments/gate5_policy_blindness_under_drift.py
 python experiments/gate6_active_sensing_delayed_audit.py
+python experiments/gate7_temporal_routing_body.py
 python -m unittest discover -s tests -v
 ```
 
@@ -416,6 +463,7 @@ replacement for the canonical experimental receipts.
 - [AlgoSchalgo](https://github.com/anttiluode/AlgoSchalgo) — observability, ambiguity, and active measurement.
 - [Tuesday](https://github.com/anttiluode/Tuesday) — temporal structure as a source of identifiability.
 - [GeoNeuronX](https://github.com/anttiluode/GeoNeuronX) — history materialized into receiver state before readout.
+- [TEMPORAL_REPLAY.md](TEMPORAL_REPLAY.md) — represented-time read heads, replay, and the Gate 7 receipt.
 
 ## Working architecture notes
 
